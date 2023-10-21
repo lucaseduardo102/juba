@@ -14,9 +14,9 @@ export const Home = () => {
           <p className="lead">
             Sua experiência de barbearia de primeira classe. Agende seu horário agora!
           </p>
-          <a href="/agendamento" className="btn btn-primary btn-lg">
+          <Link to="/agendamento" className="btn btn-primary btn-lg">
             Agendar Horário
-          </a>
+          </Link>
         </div>
       </section>
 
