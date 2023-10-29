@@ -1,22 +1,26 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import '../../assets/global.css';
+import { repository } from '../../repositories';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleLogin = () => {
-    // Aqui você pode adicionar a lógica de autenticação com o email e senha
-    // Por exemplo, fazer uma solicitação de API para verificar as credenciais
+  async function handleLogin() {
+    console.log('press')
+    const data = await repository.user.signIn(email,password);
+    console.log(data)
+    // // Aqui você pode adicionar a lógica de autenticação com o email e senha
+    // // Por exemplo, fazer uma solicitação de API para verificar as credenciais
 
-    // Se a autenticação for bem-sucedida, redirecione o usuário para a página Home
-    if (email === "admin@jubas.com" && password === "12345678") {
-      window.location.href = '/home';
-    } else {
-      setError("Usuário ou senha incorreto");
-    }
+    // // Se a autenticação for bem-sucedida, redirecione o usuário para a página Home
+    // if (email === "admin@jubas.com" && password === "12345678") {
+    //   window.location.href = '/home';
+    // } else {
+    //   setError("Usuário ou senha incorreto");
+    // }
   };
 
   return (
