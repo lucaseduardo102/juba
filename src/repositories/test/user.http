@@ -1,0 +1,9 @@
+POST https://jubas-backend.onrender.com/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "admin@jubas.com",
+  "password": "12345678"
+}
+
+###

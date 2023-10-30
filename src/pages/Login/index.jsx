@@ -1,27 +1,20 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import '../../assets/global.css';
-import { repository } from '../../repositories';
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { repository } from "../../repositories";
+import "../../assets/global.css";
 
 export const Login = () => {
+  const { user, signIn, isLoading, isError } = repository.useUserSignIn();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
 
-  async function handleLogin() {
-    console.log('press')
-    const data = await repository.user.signIn(email,password);
-    console.log(data)
-    // // Aqui você pode adicionar a lógica de autenticação com o email e senha
-    // // Por exemplo, fazer uma solicitação de API para verificar as credenciais
-
-    // // Se a autenticação for bem-sucedida, redirecione o usuário para a página Home
-    // if (email === "admin@jubas.com" && password === "12345678") {
-    //   window.location.href = '/home';
-    // } else {
-    //   setError("Usuário ou senha incorreto");
-    // }
-  };
+  function handleLogin() {
+    signIn(email, password);
+    if (user.id) {
+      //envia para a tela home
+      console.log("tela home");
+    }
+  }
 
   return (
     <div className="container">
@@ -30,18 +23,22 @@ export const Login = () => {
           <div className="logoTitle">
             <h1 className="title-text">Juba's Barbearia</h1>
             <img
-              src={require('../../assets/images/logoMarca.png')}
+              src={require("../../assets/images/logoMarca.png")}
               alt="Logo"
               className="logo"
             />
+            {isError && (
+              <p className="error-message">{"E-mail e/ou Senha Incorretos"}</p>
+            )}
           </div>
+
           <form>
             <div className="field-container">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={email ? 'has-val input' : 'input'}
+                className={email ? "has-val input" : "input"}
                 placeholder="Email"
                 maxLength={35} // Defina o máximo de caracteres permitidos
               />
@@ -56,7 +53,6 @@ export const Login = () => {
                 required
               />
             </div>
-            {error && <p className="error-message">{error}</p>}
             <div className="button-container">
               <button
                 className="btn btn-primary custom-button"

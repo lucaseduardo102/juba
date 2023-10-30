@@ -1,5 +1,5 @@
-import {user} from "./User/user"
+import { useUserSignIn } from "./User/useCases/useUserSignIn";
 
 export const repository = {
-    user
-}
+  useUserSignIn,
+};
