@@ -1,19 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, use } from "react-router-dom";
 import React, { useState } from "react";
 import { repository } from "../../repositories";
 import "../../assets/global.css";
 
 export const Login = () => {
   const { user, signIn, isLoading, isError } = repository.useUserSignIn();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userForm, setUserForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleUserFormState(key, value) {
+    setUserForm((prev) => ({...prev, [key]: value }));
+  }
+
+  console.log(userForm);
 
   function handleLogin() {
-    signIn(email, password);
-    if (user.id) {
-      //envia para a tela home
-      console.log("tela home");
-    }
+    signIn(userForm.email, userForm.password);
+  }
+
+  // NAVEGAR PARA HOME
+  if (user.id) {
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -36,9 +45,9 @@ export const Login = () => {
             <div className="field-container">
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={email ? "has-val input" : "input"}
+                value={userForm.email}
+                onChange={(e) => handleUserFormState("email", e.target.value)}
+                className={userForm.email ? "has-val input" : "input"}
                 placeholder="Email"
                 maxLength={35} // Defina o máximo de caracteres permitidos
               />
@@ -46,9 +55,11 @@ export const Login = () => {
             <div className="password-container">
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={password !== "" ? "has-val input" : "input"}
+                value={userForm.password}
+                onChange={(e) =>
+                  handleUserFormState("password", e.target.value)
+                }
+                className={userForm.password !== "" ? "has-val input" : "input"}
                 placeholder="Senha"
                 required
               />
