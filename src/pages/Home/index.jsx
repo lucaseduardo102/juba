@@ -1,22 +1,29 @@
-import { Link } from 'react-router-dom'
-import React from 'react';
+import { Link } from "react-router-dom";
+import React from "react";
 import { useState } from "react";
-import logoMarca from '../../assets/images/logoMarca.png'; 
-import Menu from '../../components/Reutility/menu';
+import logoMarca from "../../assets/images/logoMarca.png";
+import Menu from "../../components/Reutility/menu";
+// import "../../assets/global.css";
+
+function navegarParaAgendamento(){
+
+}
 
 export const Home = () => {
   return (
     <div>
+      <Menu/>
       <section className="hero text-dark text-center py-5">
         <div className="container">
           <img src={logoMarca} alt="Logo" className="logo" />
           <h1 className="display-4">Bem-vindo à Barbearia Jubas</h1>
           <p className="lead">
-            Sua experiência de barbearia de primeira classe. Agende seu horário agora!
+            Sua experiência de barbearia de primeira classe. Agende seu horário
+            agora!
           </p>
-          <Link to="/agendamento" className="btn btn-primary btn-lg">
+          <button className="btn btn-primary">
             Agendar Horário
-          </Link>
+          </button>
         </div>
       </section>
 
@@ -26,9 +33,10 @@ export const Home = () => {
             <div className="col-md-6">
               <h2>Sobre Nós</h2>
               <p>
-                A Barbearia Jubas é conhecida por sua dedicação à qualidade e estilo.
-                Nossos profissionais talentosos estão aqui para oferecer a você a melhor
-                experiência de barbearia. Conheça nossos serviços e reserve seu horário hoje.
+                A Barbearia Jubas é conhecida por sua dedicação à qualidade e
+                estilo. Nossos profissionais talentosos estão aqui para oferecer
+                a você a melhor experiência de barbearia. Conheça nossos
+                serviços e reserve seu horário hoje.
               </p>
             </div>
           </div>
@@ -36,4 +44,4 @@ export const Home = () => {
       </section>
     </div>
   );
-}
+};

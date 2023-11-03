@@ -20,3 +20,35 @@
     padding: 15px 50px 15px 50px;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
   }
+
+/*daqui pra baixo menu */
+
+.menu {
+  display: flex;
+  justify-content: center; /* Centralizar horizontalmente */
+  align-items: center;
+  background-color: #3c4659; /* Cor de fundo */
+  padding: 10px;
+}
+
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: #00a8cc;
+}
+
+  
