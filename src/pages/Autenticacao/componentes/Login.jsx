@@ -1,24 +1,24 @@
 import { Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
-import { repository } from "../../../repositories";
+import { useUserAuth } from "../../../domain";
 
 export const Login = () => {
-  const { user, signIn, isLoading, isError } = repository.useUserSignIn();
   const [userForm, setUserForm] = useState({
     email: "",
     password: "",
   });
+  const { data, isError, fetchData } = useUserAuth(userForm.email, userForm.password);
 
   function handleUserFormState(key, value) {
     setUserForm((prev) => ({ ...prev, [key]: value }));
   }
 
   function handleLogin() {
-    signIn(userForm.email, userForm.password);
+    fetchData();
   }
 
   // NAVEGAR PARA HOME
-  if (user.id) {
+  if (data?.id) {
     return <Navigate to="/home" />;
   }
 
@@ -28,7 +28,6 @@ export const Login = () => {
       <div className="logoTitleCad">
         <h1 className="title-text"> Login </h1>
       </div>
-      <p></p>
         <div className="field-container">
           <input
             className={userForm.email !== "" ? "has-val input" : "input"}

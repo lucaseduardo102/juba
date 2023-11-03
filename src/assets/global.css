@@ -227,6 +227,10 @@ html, body {
   text-align: center;
 }
 
+.custom-alert {
+  padding: 8px;
+}
+
 @media screen and (max-width: 768px) {
   .wrap {
     padding: 10px;

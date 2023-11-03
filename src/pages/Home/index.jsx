@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import logoMarca from "../../assets/images/logoMarca.png";
 import Menu from "../../components/Reutility/menu";
 // import "../../assets/global.css";
 
-function navegarParaAgendamento(){
-
-}
-
+function navegarParaAgendamento() {
+  return <Navigate to="/agendamento" />;
+};
 export const Home = () => {
+
   return (
     <div>
       <Menu/>
@@ -21,7 +21,7 @@ export const Home = () => {
             Sua experiência de barbearia de primeira classe. Agende seu horário
             agora!
           </p>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={navegarParaAgendamento}>    
             Agendar Horário
           </button>
         </div>
