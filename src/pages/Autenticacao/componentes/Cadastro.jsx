@@ -1,43 +1,49 @@
-import { useState } from "react";
 import { useUserCreate } from "../../../domain";
 import { Alert } from "../../../components";
-import { Navigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { RegisterSchema } from "../../../utils";
+import {InputField } from "../../../components";
+import { ButtonAuth } from "../../../components/ButtonAuth";
 
 export function Cadastro() {
-  const [userForm, setUserForm] = useState({
-    email: "",
-    password: "",
-  });
+  const { status, fetchData } = useUserCreate();
 
-  const { status, fetchData } = useUserCreate(
-    userForm.email,
-    userForm.password,
-    3
-  );
+  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      validationSchema: RegisterSchema,
+      initialValues: {
+        email: "",
+        password: "",
+        checkPass: "",
+      },
+      onSubmit: (values) =>
+        fetchData({
+          email: values.email,
+          password: values.password,
+          permissionId: 3,
+        }),
+    });
 
-  function handleUserFormState(key, value) {
-    setUserForm((prev) => ({ ...prev, [key]: value }));
-  }
+  function StatusAlert({ status }) {
+    const state = {
+      message: null,
+      type: "danger",
+    };
 
-  function handleRegister() {
-    fetchData();
-  }
-
-  function StatusAlert() {
-    let message = null;
-    let type = 'danger'
-    if (status === 201) {
-      message = "Usuário criado com sucesso.";
-      type='success'
-    }
-    if (status === 401) {
-      message = "Usuário já existe!";
-    }
-    if (status === 500) {
-      message = "Ocorreu um erro inesperado, tente novamente.";
-    }
-    if (message) {
-      return <Alert type={type} message={message}/>;
+    if (status) {
+      switch (status) {
+        case 201:
+          state.message = "Usuário criado com sucesso.";
+          state.type = "success";
+          break;
+        case 401:
+          state.message = "Usuário já existe!";
+          break;
+        default:
+          state.message = "Ocorreu um erro inesperado, tente novamente.";
+          break;
+      }
+      return <Alert type={state.type} message={state.message} />;
     }
   }
 
@@ -47,35 +53,35 @@ export function Cadastro() {
         <div className="logoTitleCad">
           <h1 className="title-text"> Cadastre-se </h1>
         </div>
-        <StatusAlert />
-        <div className="field-container">
-          <input
-            className={userForm.email !== "" ? "has-val input" : "input"}
-            type="email"
-            value={userForm.email}
-            onChange={(e) => handleUserFormState("email", e.target.value)}
-            maxLength={35} // Defina o máximo de caracteres permitidos para o email
-          />
-          <span className="focus-input" data-placeholder="Email"></span>
-        </div>
-        <div className="field-container">
-          <input
-            className={userForm.password !== "" ? "has-val input" : "input"}
-            type="password"
-            value={userForm.password}
-            onChange={(e) => handleUserFormState("password", e.target.value)}
-          />
-          <span className="focus-input" data-placeholder="Senha"></span>
-        </div>
-        <div className="button-container">
-          <button
-            type="submit"
-            className="custom-button"
-            onClick={handleRegister}
-          >
-            Cadastrar
-          </button>
-        </div>
+        <StatusAlert status={status} />
+        <InputField
+          type="email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange("email")}
+          onBlur={handleBlur("email")}
+          maxLength={35}
+          error={touched.email && errors.email}
+        />
+
+        <InputField
+          type="password"
+          placeholder="Senha"
+          value={values.password}
+          onChange={handleChange("password")}
+          onBlur={handleBlur("password")}
+          error={touched.password && errors.password}
+        />
+
+        <InputField
+          type="password"
+          placeholder="Confirmar senha"
+          value={values.checkPass}
+          onChange={handleChange("checkPass")}
+          onBlur={handleBlur("checkPass")}
+          error={touched.checkPass && errors.checkPass}
+        />
+        <ButtonAuth text="Cadastrar" onClick={handleSubmit} />
       </form>
     </div>
   );

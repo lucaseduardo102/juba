@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden
+  overflow: auto;
 }
 
 .hero {
@@ -81,7 +81,6 @@ html, body {
   width: 100%;
   position: relative;
   border-bottom: 2px solid #000;
-  margin-bottom: 30px;
 }
 
 .input {
@@ -230,6 +229,12 @@ html, body {
 .custom-alert {
   padding: 8px;
 }
+
+.paragrafo-de-erro{
+  margin-bottom: 30px;
+  color: #b21c1c;
+}
+
 
 @media screen and (max-width: 768px) {
   .wrap {

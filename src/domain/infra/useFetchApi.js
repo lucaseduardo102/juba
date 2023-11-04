@@ -1,7 +1,7 @@
-import {isAxiosError} from 'axios';
-import {useState} from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
-export function useApiFetchState({
+export function useFetchApi({
   apiFn,
 }) {
   const [data, setData] = useState();
@@ -9,17 +9,17 @@ export function useApiFetchState({
   const [isError, setError] = useState(null);
   const [status, setStatus] = useState(null);
 
-  async function fetchData() {
+  async function fetchData(request) {
     try {
       setLoading(true);
       setError(null);
       setStatus(null);
-      const response = await apiFn();
+      const response = await apiFn(request);
       setData(response.data);
       setStatus(response.status);
     } catch (error) {
       setError(true);
-      if (isAxiosError(error)) {
+      if (axios.isAxiosError(error)) {
         setStatus(error.response?.status);
       }
     } finally {

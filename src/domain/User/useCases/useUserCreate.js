@@ -1,12 +1,9 @@
-import {userApi} from '../userApi';
-import {useApiFetchState} from '../../infra/useApiFetchState';
+import { userApi } from "../userApi";
+import { useFetchApi } from "../../infra/useFetchApi";
 
-export function useUserCreate(
-  email,
-  password,
-  permissionId,
-) {
-  return useApiFetchState({
-    apiFn: () => userApi.create(email, password, permissionId),
+export function useUserCreate() {
+  return useFetchApi({
+    apiFn: ({ email, password, permissionId }) =>
+      userApi.create(email, password, permissionId),
   });
 }

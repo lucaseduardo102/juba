@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Agendamento, Autenticacao, Home } from "../pages";
+import { Agendamento, Autenticacao, Home, RecoveryPassword, } from "../pages";
 
 
 export const AppRouter = () => {
@@ -7,6 +7,7 @@ export const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="*" element={<Autenticacao />} />
+        <Route path="/recuperar-senha" element={<RecoveryPassword />} />
         <Route path="/agendamento" element={<Agendamento />} />
         <Route path="/home" element={<Home />} />
       </Routes>
