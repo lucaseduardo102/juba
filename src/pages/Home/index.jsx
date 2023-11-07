@@ -1,19 +1,19 @@
-import { Link, Navigate } from "react-router-dom";
-import React from "react";
-import { useState } from "react";
-import logoMarca from "../../assets/images/logoMarca.png";
-import Menu from "../../components/Reutility/menu";
+// import { Link, Navigate } from "react-router-dom";
+// import React from "react";
+// import { useState } from "react";
+// import logoMarca from "../../assets/images/logoMarca.png";
+import NavBar from "../../components/NavBar";
 // import "../../assets/global.css";
 
-function navegarParaAgendamento() {
-  return <Navigate to="/agendamento" />;
-};
+// function navegarParaAgendamento() {
+//   return <Navigate to="/agendamento" />;
+// };
 export const Home = () => {
 
   return (
-    <div>
-      <Menu/>
-      <section className="hero text-dark text-center py-5">
+    // <div>
+      <NavBar></NavBar>
+     /* { <section className="hero text-dark text-center py-5">
         <div className="container">
           <img src={logoMarca} alt="Logo" className="logo" />
           <h1 className="display-4">Bem-vindo à Barbearia Jubas</h1>
@@ -41,7 +41,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-    </div>
-  );
+      </section> }*/
+//     </div>
+);
 };

@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import Menu from "../../components/Reutility/menu";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 export const Agendamento = () => {
   return (
     <div className="agendamento-page">
-      <Menu />
+      <NavBar />
       <div className="container">
         <h1 className="text-center mt-4">Agendamento</h1>
 
@@ -75,6 +76,7 @@ export const Agendamento = () => {
           Voltar
         </Link>
       </div>
+      <Footer/>
     </div>
   );
 };
