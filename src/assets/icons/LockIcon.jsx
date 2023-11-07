@@ -1,3 +1,4 @@
+
 export function LockIcon({size = 20}) {
   return (
     <svg
