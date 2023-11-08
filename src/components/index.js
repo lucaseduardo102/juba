@@ -1,4 +1,3 @@
-export * from "./LayoutComponents"
 export * from "./Alert"
 export * from './NavBar'
 export * from "./InputField"
@@ -10,3 +9,5 @@ export * from "./Icon"
 export * from "./ButtonAuth"
 export * from "./StatusAlert"
 export * from "./Footer"
+export * from "./Loading"
+export * from "./Slide"

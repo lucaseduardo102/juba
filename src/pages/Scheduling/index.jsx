@@ -64,28 +64,40 @@ export const Agendamento = () => {
 
       {/* Modal para "Corte de Cabelo" */}
       <div
-        className="modal fade" // Classe Bootstrap para criar o efeito de modal
-        id="corteModal" // ID do modal
+        className="modal fade"
+        id="corteModal"
         tabIndex="-1"
-        aria-labelledby="corteModalLabel" // Rótulo do modal
+        aria-labelledby="corteModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-lg">
+          {" "}
+          {/* Modal grande */}
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="corteModalLabel">
-                Detalhes do Corte de Cabelo
+                Tipos de Corte de Cabelo
               </h5>
               <button
                 type="button"
-                className="btn-close" // Botão de fechamento do modal
-                data-bs-dismiss="modal" // Fecha o modal ao clicar no botão
+                className="btn-close"
+                data-bs-dismiss="modal"
                 aria-label="Close"
-                onClick={closeCorteModal}
               ></button>
             </div>
             <div className="modal-body">
-              <p>Detalhes dos possíveis cortes de cabelo aqui...</p>
+              <p>Aqui estão alguns dos nossos estilos de corte de cabelo:</p>
+              <ul>
+                <li>Corte Clássico</li>
+                <li>Corte Moderno</li>
+                <li>Corte Somente com tesoura</li>
+                <li>Corte Undercut</li>
+                <li>Corte Navalhado</li>
+              </ul>
+              <p>
+                Oferecemos uma variedade de estilos para atender às suas
+                necessidades de aparência.
+              </p>
             </div>
           </div>
         </div>
@@ -93,39 +105,48 @@ export const Agendamento = () => {
 
       {/* Modal para "Barba" */}
       <div
-        className="modal fade" // Classe Bootstrap para criar o efeito de modal
-        id="barbaModal" // ID do modal
+        className="modal fade"
+        id="barbaModal"
         tabIndex="-1"
-        aria-labelledby="barbaModalLabel" // Rótulo do modal
+        aria-labelledby="barbaModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="barbaModalLabel">
-                Detalhes da Barba
+                Serviços de Barba
               </h5>
               <button
                 type="button"
-                className="btn-close" // Botão de fechamento do modal
-                data-bs-dismiss="modal" // Fecha o modal ao clicar no botão
+                className="btn-close"
+                data-bs-dismiss="modal"
                 aria-label="Close"
-                onClick={closeBarbaModal}
               ></button>
             </div>
             <div className="modal-body">
-              <p>Detalhes dos possíveis cortes de barba aqui...</p>
+              <p>
+                Oferecemos uma variedade de serviços de barba para manter seu
+                visual impecável:
+              </p>
+              <ul>
+                <li>Barba Tradicional</li>
+                <li>Barba Desenhada</li>
+                <li>Barba Curta</li>
+                <li>Barba Longa</li>
+              </ul>
+              <p>
+                Nossa equipe está pronta para cuidar da sua barba e mantê-la em
+                perfeitas condições.
+              </p>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="container text-center py-4">
-        <Link to="/home" className="btn btn-primary">
+      <Footer />
+        <Link to="/home" className="btn btn-primary ">
           Voltar
         </Link>
-      </div>
-      <Footer />
     </div>
   );
 };

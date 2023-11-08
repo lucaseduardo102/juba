@@ -5,31 +5,37 @@ export const NavBar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-sm py-3">
       <div className="container-fluid">
-        <a href="#" className="navbar-brand d-flex">
+        <Link to="/home" className="navbar-brand d-flex">
           Inicio
-        </a>
-        
-        <button className="navbar-toggler" type="button" 
-        data-bs-toggle="collapse" 
-        data-bs-target="#menuNavbar">
-        <span className="navbar-toggler-icon"></span>    
-        </button>
-        
-        <div className="collapse navbar-collapse"
-        id="menuNavbar"
+        </Link>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuNavbar"
         >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="menuNavbar">
           <div className="navbar-nav">
-            <a href="#" className="nav-link">
+          <Link to="/agendamento" className="nav-link">
+              Agendamento
+            </Link>
+            <Link to="/services" className="nav-link">
               Serviços
-            </a>
-            <a href="#" className="nav-link">
+            </Link>
+            <Link to="/profissionales" className="nav-link">
               Profissionais
-            </a>
-            <a href="#" className="nav-link">
+            </Link>
+            <Link to="/users" className="nav-link">
+              Gerenciar usuários
+            </Link>
+            <Link to="/about" className="nav-link">
               Sobre
-            </a>
-            <a href="#" className="nav-link ms-auto
-            disabled">
+            </Link>
+            <a href="#" className="nav-link ms-auto disabled">
               Sair
             </a>
           </div>

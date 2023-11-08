@@ -1,4 +1,6 @@
-export * from "./Agendamento"
+export * from "./Scheduling"
 export * from "./Autenticacao/Autenticacao"
 export * from "./Home"
 export * from "./RecoveryPassword/RecoveryPassword"
+export * from "./About"
+export * from "./Users"
