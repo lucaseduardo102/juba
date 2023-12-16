@@ -1,5 +1,6 @@
-import { Link, } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import React from "react";
+import logoMarca from "../../assets/images/logoMarca.png";
 import { NavBar } from "../../components/NavBar";
 import "../../assets/global.css";
 import Footer from "../../components/Footer";

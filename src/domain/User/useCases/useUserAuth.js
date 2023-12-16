@@ -1,5 +1,5 @@
 import { userApi } from "../userApi";
-import { useFetchApi } from "../../infra/useFetchApi";
+import { useFetchApi } from "../../../hooks/useFetchApi";
 
 export function useUserAuth() {
   return useFetchApi({

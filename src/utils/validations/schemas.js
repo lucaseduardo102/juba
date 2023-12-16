@@ -12,6 +12,11 @@ const checkPass = string()
   .oneOf([ref('password')], '*As senhas devem ser iguais')
   .required('*Campo obrigatório');
 
+const cpf = string()
+  .min(11, '*Deve ser CPF')
+  .max(14, '*Deve ser CPF')
+  .required('*Campo obrigatório');
+
 export const LoginSchema = object().shape({
   email,
   password,
@@ -19,6 +24,13 @@ export const LoginSchema = object().shape({
 
 export const RegisterSchema = object().shape({
   email,
+  password,
+  checkPass
+})
+
+export const RecoveryPassSchema = object().shape({
+  email,
+  cpf,
   password,
   checkPass
 })

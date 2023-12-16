@@ -1,11 +1,8 @@
 export function InputField({
-  type,
   value,
-  onChange,
-  onBlur,
   placeholder,
-  maxLength,
   error,
+  ...props
 }) {
   const inputClassName = value !== "" ? "has-val input" : "input";
 
@@ -14,11 +11,8 @@ export function InputField({
       <div className="field-container">
         <input
           className={inputClassName}
-          type={type}
           value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          maxLength={maxLength}
+          {...props}
         />
         <span className="focus-input" data-placeholder={placeholder}></span>
       </div>

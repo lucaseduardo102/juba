@@ -39,10 +39,23 @@ async function update(
   });
 }
 
+async function updatePassword(
+  email,
+  cpf,
+  password,
+) {
+  return await api.patch(`${PATH}/recovery-password`, {
+    email,
+    cpf,
+    password,
+  });
+}
+
 export const userApi = {
   auth,
   create,
   getList,
   getListByPermission,
   update,
+  updatePassword
 };

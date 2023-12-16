@@ -9,7 +9,6 @@ export const Agendamento = () => {
   const [showBarbaModal, setShowBarbaModal] = useState(false);
 
   // Funções para abrir e fechar os modais de "Corte de Cabelo"
-  const openCorteModal = () => setShowCorteModal(true);
   const closeCorteModal = () => setShowCorteModal(false);
 
   // Funções para abrir e fechar os modais de "Barba"
@@ -144,9 +143,6 @@ export const Agendamento = () => {
         </div>
       </div>
       <Footer />
-        <Link to="/home" className="btn btn-primary ">
-          Voltar
-        </Link>
     </div>
   );
 };
