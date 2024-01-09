@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Alert, Box, Button, Form, Icon, Input } from "../../components";
 import { useFormik } from "formik";
 import { RecoveryPassSchema, mask } from "../../utils";
-import { useUserRecoveryPassword } from "../../domain/User/useCases/useUserRecoveryPassword";
+import { useProfileRecoveryPassword } from "../../domain/Profile";
 
 export function RecoveryPassword() {
-  const { fetchData, status } = useUserRecoveryPassword();
+  const { fetchData, status } = useProfileRecoveryPassword();
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       validationSchema: RecoveryPassSchema,
@@ -15,13 +15,14 @@ export function RecoveryPassword() {
         password: "",
         checkPass: "",
       },
-      onSubmit: (values) =>
+      onSubmit: (values) => {
         fetchData({
           email: values.email,
-          cpf: values.cpf,
+          cpf: mask.removeCpf(values.cpf),
           password: values.password,
-        }),
-    });
+        })
+      }
+    })
 
   const navigate = useNavigate();
   const navigateToAuthPage = () => {
@@ -62,7 +63,7 @@ export function RecoveryPassword() {
           <p className="text-center pb-3">
             Informe seu E-mail e CPF para alterar sua senha.
           </p>
-          <StatusAlert status={200} />
+          <StatusAlert status={status} />
           <Input
             label="E-mail"
             type="email"
@@ -115,7 +116,7 @@ export function RecoveryPassword() {
               text={"Voltar"}
               onClick={navigateToAuthPage}
             />
-            <Button text={"Enviar"} onClick={handleSubmit} />
+            <Button text="Enviar" onClick={handleSubmit} />
           </div>
         </>
       </Form>

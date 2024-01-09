@@ -1,4 +1,4 @@
-import {api} from '../../services';
+import {api} from '../../api';
 
 const PATH = '/user';
 
@@ -39,17 +39,6 @@ async function update(
   });
 }
 
-async function updatePassword(
-  email,
-  cpf,
-  password,
-) {
-  return await api.patch(`${PATH}/recovery-password`, {
-    email,
-    cpf,
-    password,
-  });
-}
 
 export const userApi = {
   auth,
@@ -57,5 +46,4 @@ export const userApi = {
   getList,
   getListByPermission,
   update,
-  updatePassword
 };
