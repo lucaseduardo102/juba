@@ -12,25 +12,19 @@ export const Home = () => {
   // };
 
   return (
-    <div>
+    <>
       <NavBar />
-      <section className="hero text-dark text-center py-2">
-        <div className="container-hero">
-          <div className="row align-items-center justify-content-center">
-            <div className="col">
-              <img src={logoMarca} alt="Logo" className="logo mx-auto d-block" />
-              <h1 className="display-4">Bem-vindo à Barbearia Jubas</h1>
-              <p className="lead">
+
+          <div className="container-lg">
+                      <div className="col">
+              <h1 className="text-center">Bem-vindo à Barbearia Jubas</h1>
+              <p className="text-center">
                 Sua experiência de barbearia de primeira classe. Venha conhecer nosso serviços!
               </p>
-              <br />
-              <br />
               <Slide />
             </div>
           </div>
-        </div>
-      </section>
       <Footer />
-    </div>
+    </>
   );
 };

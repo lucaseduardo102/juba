@@ -6,8 +6,8 @@ async function getList() {
   return await api.get(PATH);
 }
 
-async function getListByPermission(id) {
-  return await api.get(`${PATH}/permission/${id}`);
+async function getListByPermission(permissionId) {
+  return await api.get(`${PATH}/permission/${permissionId}`);
 }
 
 async function auth(email, password) {
@@ -17,25 +17,25 @@ async function auth(email, password) {
 async function create(
   email,
   password,
-  userPermissionId,
+  permissionId,
 ) {
-  return await api.post(`${PATH}/register`, {
+  return await api.post(`${PATH}`, {
     email,
     password,
-    userPermissionId,
+    permissionId,
   });
 }
 
 async function update(
-  id,
+  userId,
   email,
   password,
-  userPermissionId,
+  permissionId,
 ) {
-  return await api.patch(`${PATH}/${id}`, {
+  return await api.patch(`${PATH}/${userId}`, {
     email,
     password,
-    userPermissionId,
+    permissionId,
   });
 }
 
