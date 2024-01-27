@@ -15,7 +15,7 @@ export const Home = () => {
     <>
       <NavBar />
 
-          <div className="container-lg">
+         <div className="container-lg">
                       <div className="col">
               <h1 className="text-center">Bem-vindo à Barbearia Jubas</h1>
               <p className="text-center">

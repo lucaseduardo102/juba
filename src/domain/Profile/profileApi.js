@@ -6,6 +6,10 @@ async function getListByUser(userId) {
   return await api.get(`${PATH}/user/${userId}`);
 }
 
+async function getListOfUserAndPermission() {
+  return await api.get(`${PATH}/user/permission`);
+}
+
 async function getListByPermission(permissionId) {
   return await api.get(`${PATH}/permission/${permissionId}`);
 }
@@ -70,6 +74,7 @@ async function remove(id) {
 
 export const profileApi = {
   getListByUser,
+  getListOfUserAndPermission,
   getListByPermission,
   create,
   fullyUpdate,

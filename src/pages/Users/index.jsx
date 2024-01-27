@@ -1,58 +1,87 @@
-import { Link, Navigate } from "react-router-dom";
-import React from "react";
-import logoMarca from "../../assets/images/logoMarca.png";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
-import "../../assets/global.css";
-import Footer from "../../components/Footer";
+import { useProfileGetListOfUserAndPermission } from "../../domain/Profile";
+import { Modal } from "./components/Modal";
 
 export const Users = () => {
+  const navigate = useNavigate();
+  const { data, fetchData } = useProfileGetListOfUserAndPermission();
+  const [isOpen,setIsOpen] = useState(false)
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const deleteProfile = (profileId) => {
+    return alert();
+  };
+
+  const navigateToProfileUpdate = (profileId) => {
+    navigate(`/users/Editar/${profileId}`);
+  };
 
   return (
     <Screen>
-      <div className="d-flex justify-content-end">
-
-      <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-      </div>
+      <ScreenTitle text="Lista de Usuários" />
       <div className="col-12">
-        
-        <ScreenTitle text="Lista de Usuários" />
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Ações</th>
+              <th scope="col" className="col-3">
+                Nome
+              </th>
+              <th scope="col" className="col-3">
+                E-mail
+              </th>
+              <th scope="col" className="col-2 text-center">
+                Nível
+              </th>
+              <th scope="col" className="col-1 text-center">
+                Status
+              </th>
+              <th scope="col" className="col-3 text-center">
+                Ações
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">João da Silva</td>
-              <td>joao.silva@example.com</td>
-              <td>
-                <Link to="/users/editar/1" className="btn btn-primary">Editar</Link>
-                <Link to="/users/remover/1" className="btn btn-danger">Remover</Link>
-              </td>
-            </tr>
-            <tr>
-              <td scope="row">Maria da Silva</td>
-              <td>maria.silva@example.com</td>
-              <td>
-                <Link to="/users/editar/2" className="btn btn-primary">Editar</Link>
-                <Link to="/users/remover/2" className="btn btn-danger">Remover</Link>
-              </td>
-            </tr>
+            {data?.map((profile) => (
+              <>
+                <tr key={profile.id}>
+                  <td>{profile.name}</td>
+                  <td>{profile.user.email}</td>
+                  <td className="col-2 text-center">
+                    {profile.user.permission.type}
+                  </td>
+                  <td className="col-1 text-center">
+                    {profile.statusProfile ? "Ativo" : "Inativo"}
+                  </td>
+                  <td className="col-3 text-center">
+                    <button
+                      type="button"
+                      className="btn btn-primary m-1"
+                      onClick={() => navigateToProfileUpdate(profile.id)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger m-1"
+                      onClick={() => setIsOpen(true)}
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+                {isOpen && <Modal profile={profile} />}
+              </>
+            ))}
           </tbody>
         </table>
       </div>
+      
+
     </Screen>
   );
 };
