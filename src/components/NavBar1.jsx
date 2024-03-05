@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "./../assets/images/logoMarca.png"
 import './components.css';
 
-export const NavBar = ({ children }) => {
+export const NavBar1 = ({ children }) => {
   const location = useLocation();
 
   return (
@@ -61,7 +61,7 @@ export const NavBar = ({ children }) => {
           </div>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/"> Sair </Link>
+              <Link className="nav-link" to="/about">Sair</Link>
             </li>
           </ul>
         </div>
@@ -73,4 +73,4 @@ export const NavBar = ({ children }) => {
   );
 };
 
-export default NavBar;
+export default NavBar1;

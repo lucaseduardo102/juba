@@ -1,5 +1,4 @@
 import React from "react";
-import "./Slide.css";
 
 const carouselStyle = {
   marginLeft: "300px", 

@@ -1,0 +1,21 @@
+/* components.css */
+
+.nav-link-all {
+    border-bottom: 0.25px solid #d3d3d3; /* Adiciona uma borda na pagina que estiver ativa */
+  }
+  
+  /* components.css */
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.822); /* Cor cinza no navbar */
+  }
+  
+.footer-text {
+        color: rgba(255, 255, 255, 0.822); /* Cor cinza no texto do footer */
+      }
+
+      .navbar-center {
+        display: flex;
+        justify-content: space-between;
+      }
+      
