@@ -1,3 +1,1 @@
-export * from './useCases/useProfileRecoveryPassword';
-export * from './useCases/useProfileGetListOfUserAndPermission';
-
+export * from "./profileUseCases"

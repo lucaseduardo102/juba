@@ -1,70 +1,20 @@
 import {api} from '../../api';
 
-const PATH = '/profile';
+const PATH = '/profiles';
 
-async function getListByUser(userId) {
-  return await api.get(`${PATH}/user/${userId}`);
+async function create(request) {
+  return await api.post(PATH, request);
 }
 
-async function getListOfUserAndPermission() {
-  return await api.get(`${PATH}/user/permission`);
+async function recoveryPassword(request) {
+  return await api.post(`${PATH}/recovery-password`, request);
 }
 
-async function getListByPermission(permissionId) {
-  return await api.get(`${PATH}/permission/${permissionId}`);
-}
-
-async function create(
-  name,
-  cpf,
-  statusProfile,
-  userId,
-) {
-  return await api.post(PATH, {
-    name,
-    cpf,
-    statusProfile,
-    userId,
-  });
-}
-
-async function fullyUpdate(
-  profileId,
-  name,
-  cpf,
-  statusProfile,
-  userId,
-) {
-  return await api.put(`${PATH}/${profileId}`, {
-    name,
-    cpf,
-    statusProfile,
-    userId,
-  });
-}
-
-async function update(
-  profileId,
-  name,
-  cpf,
-  statusProfile,
-) {
-  return await api.patch(`${PATH}/${profileId}`, {
-    name,
-    cpf,
-    statusProfile,
-  });
-}
-
-async function updatePassword(
-  email,
-  profileCpf,
-  newPassword,
-) {
-  return await api.patch(`${PATH}/recovery`, {
-    email,
-    profileCpf,
-    newPassword,
+async function update(request) {
+  return await api.patch(`${PATH}/${request.id}`, {
+    name: request.name,
+    cpf: request.cpf,
+    statusProfile: request.statusProfile,
   });
 }
 
@@ -73,12 +23,8 @@ async function remove(id) {
 }
 
 export const profileApi = {
-  getListByUser,
-  getListOfUserAndPermission,
-  getListByPermission,
   create,
-  fullyUpdate,
   update,
-  updatePassword,
   remove,
+  recoveryPassword,
 };

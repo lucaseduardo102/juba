@@ -1,29 +1,27 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export function useFetchApi({
-  apiFn,
-}) {
+export function useFetch(apiFn) {
   const [data, setData] = useState();
-  const [isLoading, setLoading] = useState(false);
-  const [isError, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
   const [status, setStatus] = useState(null);
 
-  async function fetchData(request) {
+  async function fetch(request) {
     try {
-      setLoading(true);
-      setError(null);
+      setIsLoading(true);
+      setIsError(null);
       setStatus(null);
       const response = await apiFn(request);
       setData(response.data);
       setStatus(response.status);
     } catch (error) {
-      setError(true);
+      setIsError(true);
       if (axios.isAxiosError(error)) {
         setStatus(error.response?.status);
       }
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
   
@@ -32,6 +30,7 @@ export function useFetchApi({
     isLoading,
     isError,
     status,
-    fetchData,
+    fetch,
+    refresh: fetch
   };
 }

@@ -1,12 +1,12 @@
 import { Link, Navigate } from "react-router-dom";
 import React from "react";
-import { useUserAuth } from "../../../domain";
+import {  useUserAuth,  } from "../../../domain/UserDomain";
 import { useFormik } from "formik";
 import { LoginSchema } from "../../../utils/index";
 import { StatusAlert, ButtonAuth, InputField } from "../../../components";
 
 export const Login = () => {
-  const { data, status, fetchData } = useUserAuth();
+  const { data, status, fetch } = useUserAuth();
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -15,7 +15,7 @@ export const Login = () => {
         email: "",
         password: "",
       },
-      onSubmit: () => fetchData(values),
+      onSubmit: () => fetch(values),
     });
 
   if (data?.id) {

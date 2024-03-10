@@ -1,2 +1,3 @@
-export * from "./User/useCases/useUserAuth"
-export * from "./User/useCases/useUserCreate"
+export * from "./CategoryDomain"
+export * from "./UserDomain"
+export * from "./PermissionDomain"

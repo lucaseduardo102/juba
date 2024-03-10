@@ -1,4 +1,4 @@
-import { useUserCreate } from "../../../domain";
+import { useUserCreate } from "../../../domain/UserDomain";
 import { Alert } from "../../../components";
 import { useFormik } from "formik";
 import { RegisterSchema } from "../../../utils";
@@ -6,7 +6,7 @@ import {InputField } from "../../../components";
 import { ButtonAuth } from "../../../components/ButtonAuth";
 
 export function Cadastro() {
-  const { status, fetchData } = useUserCreate();
+  const { status, fetch } = useUserCreate();
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -17,7 +17,7 @@ export function Cadastro() {
         checkPass: "",
       },
       onSubmit: (values) =>
-        fetchData({
+        fetch({
           email: values.email,
           password: values.password,
           permissionId: 3,

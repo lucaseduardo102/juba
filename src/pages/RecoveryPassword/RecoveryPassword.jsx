@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Alert, Box, Button, Form, Icon, Input } from "../../components";
 import { useFormik } from "formik";
 import { RecoveryPassSchema, mask } from "../../utils";
-import { useProfileRecoveryPassword } from "../../domain/Profile";
+import { useRecoveryPassword } from "../../domain/Profile/profileUseCases";
 
 export function RecoveryPassword() {
-  const { fetchData, status } = useProfileRecoveryPassword();
+  const { fetch, status } = useRecoveryPassword();
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       validationSchema: RecoveryPassSchema,
@@ -15,11 +15,11 @@ export function RecoveryPassword() {
         password: "",
         checkPass: "",
       },
-      onSubmit: (values) => {
-        fetchData({
+      onSubmit: () => {
+        fetch({
           email: values.email,
-          cpf: mask.removeCpf(values.cpf),
-          password: values.password,
+          profileCpf: mask.removeCpf(values.cpf),
+          newPassword: values.password,
         })
       }
     })
@@ -34,10 +34,9 @@ export function RecoveryPassword() {
       message: null,
       type: "danger",
     };
-
     if (status) {
       switch (status) {
-        case 200:
+        case 204:
           state.message = "Senha alterada com sucesso.";
           state.type = "success";
           break;

@@ -1,22 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
-import { useProfileGetListOfUserAndPermission } from "../../domain/Profile";
+// import { useProfileGetListOfUserAndPermission } from "../../domain/Profile"; IRÁ ESTÁ NO permissionUseCases
 import { Modal } from "./components/Modal";
+import { useUserGetAll } from "../../domain/UserDomain";
 
 export const Users = () => {
   const navigate = useNavigate();
-  const { data, fetchData } = useProfileGetListOfUserAndPermission();
+  const { data, fetch, isError } = useUserGetAll();
   const [isOpen,setIsOpen] = useState(false)
   
   useEffect(() => {
-    fetchData();
+    fetch();
   }, []);
 
-  const deleteProfile = (profileId) => {
-    return alert();
-  };
-
+  console.log(data)
   const navigateToProfileUpdate = (profileId) => {
     navigate(`/users/Editar/${profileId}`);
   };
@@ -46,22 +44,21 @@ export const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((profile) => (
+            {data?.map((user) => (
               <>
-                <tr key={profile.id}>
-                  <td>{profile.name}</td>
-                  <td>{profile.user.email}</td>
+                <tr key={user.id}>
+                  <td>{user.email}</td>
                   <td className="col-2 text-center">
-                    {profile.user.permission.type}
+                    {user.permission}
                   </td>
-                  <td className="col-1 text-center">
-                    {profile.statusProfile ? "Ativo" : "Inativo"}
-                  </td>
+                  {/* <td className="col-1 text-center">
+                    {user.statusProfile ? "Ativo" : "Inativo"}
+                  </td> */}
                   <td className="col-3 text-center">
                     <button
                       type="button"
                       className="btn btn-primary m-1"
-                      onClick={() => navigateToProfileUpdate(profile.id)}
+                      onClick={() => navigateToProfileUpdate(user.id)}
                     >
                       Editar
                     </button>
@@ -74,7 +71,7 @@ export const Users = () => {
                     </button>
                   </td>
                 </tr>
-                {isOpen && <Modal profile={profile} />}
+                {isOpen && <Modal profile={user} />}
               </>
             ))}
           </tbody>
