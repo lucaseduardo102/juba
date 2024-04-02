@@ -37,7 +37,7 @@ export const Assessment = () => {
 
   return (
     <div className="assessment">
-      <div className="header">
+      <div className="header" style={{ marginTop: "120px" }}>
         <h2>Avalie nosso serviço:</h2>
         <p>
           Utilize o formulario abaixo para avaliar a prestação do serviço! Sua

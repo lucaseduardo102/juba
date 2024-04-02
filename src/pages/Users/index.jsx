@@ -27,18 +27,12 @@ export const Users = () => {
           <thead>
             <tr>
               <th scope="col" className="col-3">
-                Nome
-              </th>
-              <th scope="col" className="col-3">
                 E-mail
               </th>
               <th scope="col" className="col-2 text-center">
-                Nível
+                Permissão
               </th>
-              <th scope="col" className="col-1 text-center">
-                Status
-              </th>
-              <th scope="col" className="col-3 text-center">
+              <th scope="col" className="col-2 text-center">
                 Ações
               </th>
             </tr>

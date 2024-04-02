@@ -14,7 +14,7 @@ export const UserFormAssessment = ({data, updateFieldHandler}) => {
             name="name"
             id="name"
             placeholder="Digite o seu Nome"
-            //incluir required
+            required
             value={data.name || ""}
             onChange={(e) => updateFieldHandler("name", e.target.value)}
             />
@@ -26,7 +26,7 @@ export const UserFormAssessment = ({data, updateFieldHandler}) => {
             name="email"
             id="email"
             placeholder="Digite o seu e-mail"
-            //incluir required
+            required
             value={data.email || ""}
             onChange={(e) => updateFieldHandler("email", e.target.value)}
             />

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import { Screen, ScreenTitle, } from '../../components';
 
 export const Agendamento = () => {
   // Estados para controlar a visibilidade dos modais de "Corte de Cabelo" e "Barba"
@@ -18,11 +19,9 @@ export const Agendamento = () => {
   return (
     <div>
       <NavBar />
-      <div className="container text-center py-5">
-        <h1 className="display-4">Agendamento</h1>
-      </div>
+      <ScreenTitle text='Agendamento' />
 
-      <div className="container text-center">
+      <div className="container" style={{ marginTop: "35px" }}>
         <div className="row">
           <div className="col-md-6">
             <div className="card">
