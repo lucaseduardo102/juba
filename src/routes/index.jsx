@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Agendamento, Autenticacao, Home, RecoveryPassword, About, Users} from "../pages";
+import { Agendamento, Autenticacao, Home, RecoveryPassword, About, Users, Assessment} from "../pages";
 
 
 export const AppRouter = () => {
@@ -13,6 +13,7 @@ export const AppRouter = () => {
         <Route path="/recuperar-senha" element={<RecoveryPassword />} />
         <Route path="/users" element={<Users />} />
         <Route path="/about" element={<About />} />
+        <Route path="/assessment" element={<Assessment />} />
       </Routes>
     </Router>
   );

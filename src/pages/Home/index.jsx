@@ -21,7 +21,7 @@ export const Home = () => {
               <p className="text-center">
                 Sua experiência de barbearia de primeira classe. Venha conhecer nosso serviços!
               </p>
-              <Slide />
+            
             </div>
           </div>
       <Footer />

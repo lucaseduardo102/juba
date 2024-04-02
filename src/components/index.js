@@ -13,3 +13,7 @@ export * from "./Loading"
 export * from "./Slide"
 export * from "./Screen"
 export * from "./ScreenTitle"
+export * from "./UserFormAssessment"
+export * from "./ReviewFormAssessment"
+export * from "./ThanksAssessment"
+export * from './StepsAssessment'
