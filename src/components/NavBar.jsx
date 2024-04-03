@@ -43,11 +43,6 @@ export const NavBar = ({ children }) => {
               </Link>
               </li>
               <li className="nav-item">
-              <Link to="/profissionales" className={`nav-link ${location.pathname === "/profissionales" ? 'nav-link-all' : ''}`}>
-              Profissionais
-              </Link>
-              </li>
-              <li className="nav-item">
               <Link to="/users" className={`nav-link ${location.pathname === "/users" ? 'nav-link-all' : ''}`}>
               Usuários
               </Link>

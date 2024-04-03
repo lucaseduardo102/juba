@@ -9,50 +9,44 @@ export const Services = () => {
   return (
     <>
       <NavBar />
-      <ScreenTitle text="Serviços" />
-      <div className="container" style={{ marginTop: "35px" }}>
-        <div className="row justify-content-center">
-          <div className="col-md-4 mb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Cortes</h5>
-                <p className="card-text">
-                  Faça seu JUBA mais feliz com nossas opções de cortes!
-                </p>
-                <Link to="/agendar/corte" className="btn btn-primary">
-                  Agendar
-                </Link>
+      <ScreenTitle text="Conheça abaixo nossos serviços" />
+      <div className="col-12 col-md-10 offset-md-1">
+            <div className="row">
+              <div className="col-12 col-md-4">
+                <div className="card text-center">
+                  <i className="bi bi-scissors primary-color"></i>
+                    <div className="card-body">
+                      <h5 className="card-title primary-color">Cortes</h5>
+                      <p className="card-text secondary-color">Faça seu JUBA mais feliz com nossas opções de cortes!
+                      </p>
+                      <button type="button" class="btn btn-dark">Ver mais</button>
+                    </div>
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="card text-center">
+                  <i className="bi bi-lightning-fill primary-color"></i>
+                    <div className="card-body">
+                      <h5 className="card-title primary-color">Barba</h5>
+                      <p className="card-text secondary-color">Sinta-se confiante com um visual impecável e elegante!
+                      </p>
+                      <button type="button" class="btn btn-dark">Ver mais</button>
+                    </div>
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="card text-center">
+                  <i className="bi bi-handbag-fill primary-color"></i>
+                    <div className="card-body">
+                      <h5 className="card-title primary-color">Produtos</h5>
+                      <p className="card-text secondary-color">Explore nossa linha exclusiva de produtos premium JUBA!
+                      </p>
+                      <button type="button" class="btn btn-dark">Ver mais</button>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-md-4 mb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Barba</h5>
-                <p className="card-text">
-                  Sinta-se confiante com um visual impecável e elegante!
-                </p>
-                <Link to="/agendar/barba" className="btn btn-primary">
-                  Agendar
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Produtos</h5>
-                <p className="card-text">
-                  Explore nossa linha exclusiva de produtos premium JUBA!{" "}
-                </p>
-                <Link to="/agendar/penteado" className="btn btn-primary">
-                  Agendar
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       ; ;
       <Footer />
     </>
