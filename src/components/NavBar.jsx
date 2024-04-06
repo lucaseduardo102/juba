@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "./../assets/images/logoMarca.png"
 import './components.css';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export const NavBar = ({ children }) => {
   const location = useLocation();
@@ -28,33 +29,38 @@ export const NavBar = ({ children }) => {
           <div className="collapse navbar-collapse justify-content-center" id="navbar-items">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
-            <Link to="/home" className={`nav-link ${location.pathname === "/home" ? 'nav-link-all' : ''}`}>
-              Inicio
-            </Link>
+                <Link to="/home" className={`nav-link ${location.pathname === "/home" ? 'nav-link-all' : ''}`}>
+                  Inicio
+                </Link>
               </li>
               <li className="nav-item">
-              <Link to="/agendamento" className={`nav-link ${location.pathname === "/agendamento" ? 'nav-link-all' : ''}`}>
-              Agendamento
-              </Link>
+                <Link to="/agendamento" className={`nav-link ${location.pathname === "/agendamento" ? 'nav-link-all' : ''}`}>
+                  Agendamento
+                </Link>
               </li>
               <li className="nav-item">
-              <Link to="/services" className={`nav-link ${location.pathname === "/services" ? 'nav-link-all' : ''}`}>
-              Serviços
-              </Link>
+                <Link to="/services" className={`nav-link ${location.pathname === "/services" ? 'nav-link-all' : ''}`}>
+                  Serviços
+                </Link>
               </li>
               <li className="nav-item">
-              <Link to="/users" className={`nav-link ${location.pathname === "/users" ? 'nav-link-all' : ''}`}>
-              Usuários
-              </Link>
+                <Link to="/users" className={`nav-link ${location.pathname === "/users" ? 'nav-link-all' : ''}`}>
+                  Usuários
+                </Link>
               </li>
               <li className="nav-item">
-              <Link to="/about" className={`nav-link ${location.pathname === "/about" ? 'nav-link-all' : ''}`}>
-              Sobre
-              </Link>
+                <Link to="/about" className={`nav-link ${location.pathname === "/about" ? 'nav-link-all' : ''}`}>
+                  Sobre
+                </Link>
               </li>
             </ul>
           </div>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/shopping-cart">
+                <FaShoppingCart /> {/* Icone do carrinho de compras */}
+              </Link>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/"> Sair </Link>
             </li>
