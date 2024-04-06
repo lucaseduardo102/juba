@@ -20,7 +20,7 @@ export function Cadastro() {
         fetch({
           email: values.email,
           password: values.password,
-          permissionId: 3,
+          permission: "CLIENTE",
         }),
     });
 
