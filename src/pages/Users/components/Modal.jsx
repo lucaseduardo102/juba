@@ -1,24 +1,70 @@
+import { useState } from "react";
 
-export function Modal({profile}){
+export function Modal({
+  headerTitle,
+  buttonTitle,
+  children,
+  cancelButtonProps,
+  confirmButtonProps,
+  modalClassName = "modal-lg",
+}) {
+  const [isOpen, setIsOpen] = useState(false);
 
-    return(
-    <div className="modal" id={`meuModal${profile.id}`} tabindex="-1" role="dialog">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title">Modal title</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  const handleVisibility = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        className="btn btn-dark m-1"
+        onClick={handleVisibility}
+      >
+        {buttonTitle}
+      </button>
+      <div
+        className={`modal fade ${isOpen ? "show" : ""}`}
+        tabIndex="-1"
+        role="dialog"
+        style={{ display: isOpen ? "block" : "none" }}
+      >
+        <div className={`modal-dialog ${modalClassName}`}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">{headerTitle}</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={handleVisibility}
+              />
+            </div>
+            <div className="modal-body">{children}</div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+                onClick={handleVisibility}
+                {...cancelButtonProps}
+              >
+                Fechar
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                {...confirmButtonProps}
+                onClick={() => {
+                  handleVisibility();
+                  confirmButtonProps?.onClick();
+                }}
+              >
+                Salvar
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-primary">Save changes</button>
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>)
+    </>
+  );
 }

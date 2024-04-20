@@ -1,4 +1,4 @@
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
 // import { useProfileGetListOfUserAndPermission } from "../../domain/Profile"; IRÁ ESTÁ NO permissionUseCases
@@ -8,13 +8,18 @@ import { useUserGetAll } from "../../domain/UserDomain";
 export const Users = () => {
   const navigate = useNavigate();
   const { data, fetch, isError } = useUserGetAll();
-  const [isOpen,setIsOpen] = useState(false)
-  
+
+  const [selectedProfile, setSelectedProfile] = useState();
+
+  const selectProfile = (profile) => {
+    setSelectedProfile(profile);
+  };
+
   useEffect(() => {
-    fetch();
+    fetch({ profiles: true });
   }, []);
 
-  console.log(data)
+  console.log(data);
   const navigateToProfileUpdate = (profileId) => {
     navigate(`/users/Editar/${profileId}`);
   };
@@ -42,37 +47,17 @@ export const Users = () => {
               <>
                 <tr key={user.id}>
                   <td>{user.email}</td>
-                  <td className="col-2 text-center">
-                    {user.permission}
-                  </td>
-                  {/* <td className="col-1 text-center">
-                    {user.statusProfile ? "Ativo" : "Inativo"}
-                  </td> */}
+                  <td className="col-2 text-center">{user.permission}</td>
+
                   <td className="col-3 text-center">
-                    <button
-                      type="button"
-                      className="btn btn-primary m-1"
-                      onClick={() => navigateToProfileUpdate(user.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger m-1"
-                      onClick={() => setIsOpen(true)}
-                    >
-                      Excluir
-                    </button>
+                    <Modal buttonTitle="Ver detalhes">{user.profiles.map(profile => profile.name)}</Modal>
                   </td>
                 </tr>
-                {isOpen && <Modal profile={user} />}
               </>
             ))}
           </tbody>
         </table>
       </div>
-      
-
     </Screen>
   );
 };

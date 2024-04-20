@@ -6,7 +6,7 @@ import { LoginSchema } from "../../../utils/index";
 import { StatusAlert, ButtonAuth, InputField } from "../../../components";
 
 export const Login = () => {
-  const { data, status, fetch } = useUserAuth();
+  const { data: authResponse, status, fetch } = useUserAuth();
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -18,7 +18,7 @@ export const Login = () => {
       onSubmit: () => fetch(values),
     });
 
-  if (data?.id) {
+  if (authResponse?.user.id) {
     return <Navigate to="/home" />;
   }
 

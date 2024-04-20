@@ -6,8 +6,8 @@ async function getById(userId) {
   return await api.get(`${PATH}/${userId}`);
 }
 
-async function getAll() {
-  return await api.get(PATH);
+async function getAll({profiles}) {
+  return await api.get(PATH, {params:{profiles}});
 }
 
 async function getProfilesByUser(userId) {
@@ -15,7 +15,7 @@ async function getProfilesByUser(userId) {
 }
 
 async function auth(request) {
-  return await api.post(`${PATH}/auth`, request);
+  return await api.post(`/auth`, request);
 }
 
 async function create(request) {
