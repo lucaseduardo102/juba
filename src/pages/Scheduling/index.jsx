@@ -60,11 +60,11 @@ export const Agendamento = () => {
   return (
     <div>
       <NavBar />
-      <ScreenTitle text="Agendamento" />
+      <ScreenTitle text="Agende seu serviço" />
 
-      <p className="mb-3">Agende um novo serviço ou confira seus agendamentos abaixo:</p>
+      <p className="mb-3">Clique no botão abaixo para criar um novo agendamento:</p>
 
-      <Button variant="primary" onClick={handleModalShow} className="mb-3 bi bi-plus">
+      <Button variant="dark" onClick={handleModalShow} className="mb-3 bi bi-plus">
         Agendar 
       </Button>
 
@@ -124,7 +124,7 @@ export const Agendamento = () => {
 
       <Row className="mt-3">
         <Col>
-          <h1>Meus Agendamentos</h1>
+          <h2>Meus Agendamentos</h2>
           {agendamentos.map((agendamento, index) => (
             <Card key={index} className="mb-3">
               <Card.Body>

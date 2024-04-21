@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
-// import { useProfileGetListOfUserAndPermission } from "../../domain/Profile"; IRÁ ESTÁ NO permissionUseCases
 import { Modal } from "./components/Modal";
-import { useUserGetAll } from "../../domain/UserDomain";
+import { useUserGetAll, useUserUpdate } from "../../domain/UserDomain";
+import '../Users/index.css'
 
 export const Users = () => {
   const navigate = useNavigate();
@@ -19,10 +19,6 @@ export const Users = () => {
     fetch({ profiles: true });
   }, []);
 
-  console.log(data);
-  const navigateToProfileUpdate = (profileId) => {
-    navigate(`/users/Editar/${profileId}`);
-  };
 
   return (
     <Screen>
@@ -44,16 +40,19 @@ export const Users = () => {
           </thead>
           <tbody>
             {data?.map((user) => (
-              <>
-                <tr key={user.id}>
-                  <td>{user.email}</td>
-                  <td className="col-2 text-center">{user.permission}</td>
+              <tr key={user.id}>
+                <td>{user.email}</td>
+                <td className="col-2 text-center">{user.permission}</td>
 
-                  <td className="col-3 text-center">
-                    <Modal buttonTitle="Ver detalhes">{user.profiles.map(profile => profile.name)}</Modal>
-                  </td>
-                </tr>
-              </>
+                <td className="col-3 text-center">
+                  <Modal buttonTitle="Ver detalhes">
+                    {/* Mapeia e renderiza os perfis associados */}
+                    {user.profiles.map((profile, index) => (
+                      <li key={index}>{profile.name}</li>
+                    ))}
+                  </Modal>                  
+                </td>            
+              </tr>
             ))}
           </tbody>
         </table>

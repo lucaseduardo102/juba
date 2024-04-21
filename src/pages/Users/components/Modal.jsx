@@ -1,4 +1,6 @@
 import { useState } from "react";
+import React from "react";
+import { FaUserPlus, FaUserEdit } from "react-icons/fa";
 
 export function Modal({
   headerTitle,
@@ -39,7 +41,31 @@ export function Modal({
                 onClick={handleVisibility}
               />
             </div>
-            <div className="modal-body">{children}</div>
+            <div className="modal-body">
+              <div className="profile-details">
+                {/* Título "Perfil associado" */}
+                <h6>Perfis associados:</h6>
+                {!children || React.Children.count(children) === 0 ? (
+                  <div>
+                    <p>Não tem perfil associado</p>
+                    <button type="button" className="btn btn-link">
+                      <FaUserPlus /> Criar perfil
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <ul>{children}</ul>
+                    <button type="button" className="btn btn-link">
+                      <FaUserPlus /> Criar perfil
+                    </button>
+                    <button type="button" className="btn btn-link">
+                      <FaUserEdit /> Editar perfil associado
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="modal-footer">
               <button
                 type="button"
