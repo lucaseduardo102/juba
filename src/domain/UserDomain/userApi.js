@@ -3,11 +3,11 @@ import { api } from "../../api";
 const PATH = '/users';
 
 async function getById(userId) {
-  return await api.get(`${PATH}/${userId}`);
+  return (await api.get(`${PATH}/${userId}`)).data;
 }
 
 async function getAll({profiles}) {
-  return await api.get(PATH, {params:{profiles}});
+  return (await api.get(PATH, {params:{profiles}})).data;
 }
 
 async function getProfilesByUser(userId) {
@@ -32,11 +32,12 @@ async function update(request) {
 */
 
 async function update({userId, email, password, permission}) {
-  return await api.patch(`${PATH}/${userId}`, {
+  const response = await api.patch(`${PATH}/${userId}`, {
     email,
     password,
     permission
   });
+  return response.data
 }
 
 

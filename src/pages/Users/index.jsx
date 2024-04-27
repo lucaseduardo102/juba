@@ -1,24 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
-import { Modal } from "./components/Modal";
-import { useUserGetAll, useUserUpdate } from "../../domain/UserDomain";
-import '../Users/index.css'
+import { useUserGetAll } from "../../domain/UserDomain";
+import "../Users/index.css";
+import { useVisibility } from "../../hooks/useVisibility";
+import { ModalUpdateUser } from "./components/ModalUpdateUser";
+import { ModalProfile } from "./components/ModalProfile";
 
 export const Users = () => {
+  const { data, isError } = useUserGetAll();
+
+  const modalUpdateUser = useModalFunctions();
+  const modalProfile = useModalFunctions();
+
   const navigate = useNavigate();
-  const { data, fetch, isError } = useUserGetAll();
 
-  const [selectedProfile, setSelectedProfile] = useState();
-
-  const selectProfile = (profile) => {
-    setSelectedProfile(profile);
+  const navigateToProfileScreen = (userId) => {
+    navigate("/profiles/" + userId);
   };
-
-  useEffect(() => {
-    fetch({ profiles: true });
-  }, []);
-
 
   return (
     <Screen>
@@ -45,18 +44,75 @@ export const Users = () => {
                 <td className="col-2 text-center">{user.permission}</td>
 
                 <td className="col-3 text-center">
-                  <Modal buttonTitle="Ver detalhes">
-                    {/* Mapeia e renderiza os perfis associados */}
-                    {user.profiles.map((profile, index) => (
-                      <li key={index}>{profile.name}</li>
-                    ))}
-                  </Modal>                  
-                </td>            
+                  <button
+                    type="button"
+                    className="btn btn-warning m-1"
+                    onClick={() => modalUpdateUser.openModal(user)}
+                  >
+                    Editar
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn btn-dark m-1"
+                    onClick={
+                      () => navigateToProfileScreen(user?.id)
+                      // modalProfile.openModal({
+                      // userId: user?.id,
+                      // })
+                    }
+                  >
+                    Ver perfis
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {modalUpdateUser.selectedData && (
+        <ModalUpdateUser
+          closeModal={modalUpdateUser.closeModal}
+          isVisible={modalUpdateUser.isVisible}
+          user={modalUpdateUser.selectedData}
+        />
+      )}
+      {modalProfile.selectedData && (
+        <ModalProfile
+          closeModal={modalProfile.closeModal}
+          isVisible={modalProfile.isVisible}
+          selectedData={modalProfile.selectedData}
+        />
+      )}
     </Screen>
   );
+};
+
+/**
+ * Hook responsável por manter o estado do modal
+ * @returns
+ */
+const useModalFunctions = () => {
+  const { isVisible, handleVisibility } = useVisibility();
+
+  const [selectedData, setSelectedData] = useState();
+
+  const openModal = (data) => {
+    setSelectedData(data);
+    handleVisibility();
+  };
+
+  const closeModal = () => {
+    setSelectedData();
+    handleVisibility();
+  };
+
+  return {
+    isVisible,
+    handleVisibility,
+    selectedData,
+    openModal,
+    closeModal,
+  };
 };

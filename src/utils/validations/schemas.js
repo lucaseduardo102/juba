@@ -17,6 +17,16 @@ const cpf = string()
   .max(14, '*Deve ser CPF')
   .required('*Campo obrigatório');
 
+const optionalPassword = string()
+.min(8, ({min}) => `Mínimo de ${min} caracteres`)
+.max(20, ({max}) => `No máximo ${max} caracteres`)
+.optional();
+
+const name = string()
+.min(5, '*Nome muito curto')
+.max(50, '*Nome muito longo')
+.required('*Campo obrigatório');
+  
 export const LoginSchema = object().shape({
   email,
   password,
@@ -33,4 +43,14 @@ export const RecoveryPassSchema = object().shape({
   cpf,
   password,
   checkPass
+})
+
+export const UpdateUserSchema = object().shape({
+  email,
+  password: optionalPassword
+})
+
+export const CreateProfileSchema = object().shape({
+  name,
+  cpf
 })

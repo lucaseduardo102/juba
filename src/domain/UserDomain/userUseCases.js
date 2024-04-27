@@ -1,5 +1,6 @@
 import { userApi } from "./userApi";
 import { useFetch } from "../../hooks/useFetch";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useUserAuth() {
   return useFetch(userApi.auth);
@@ -10,12 +11,24 @@ export function useUserCreate() {
 export function useUserGetProfilesByUserId() {
   return useFetch(userApi.getProfilesByUser);
 }
-export function useUserGetAll() {
-  return useFetch(userApi.getAll);
+export function useUserGetAll({ withProfiles = true } = {}) {
+  return useQuery({
+    queryKey: ["UserGetAll"],
+    queryFn: () => userApi.getAll({ profiles: withProfiles }),
+  });
 }
-export function useUserGetById() {
-  return useFetch(userApi.getById);
+export function useUserGetById(userId) {
+  return useQuery({
+    queryKey: ["UserGetById"],
+    queryFn: () => userApi.getById(userId),
+  });
 }
 export function useUserUpdate() {
-  return useFetch(userApi.update);
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: userApi.update,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["UserGetAll"] });
+    },
+  });
 }

@@ -3,7 +3,7 @@ import {api} from '../../api';
 const PATH = '/profiles';
 
 async function create(request) {
-  return await api.post(PATH, request);
+  return (await api.post(PATH, request)).data;
 }
 
 async function recoveryPassword(request) {
