@@ -5,7 +5,6 @@ import { useUserGetAll } from "../../domain/UserDomain";
 import "../Users/index.css";
 import { useVisibility } from "../../hooks/useVisibility";
 import { ModalUpdateUser } from "./components/ModalUpdateUser";
-import { ModalProfile } from "./components/ModalProfile";
 
 export const Users = () => {
   const { data, isError } = useUserGetAll();
@@ -78,13 +77,13 @@ export const Users = () => {
           user={modalUpdateUser.selectedData}
         />
       )}
-      {modalProfile.selectedData && (
+      {/* {modalProfile.selectedData && (
         <ModalProfile
           closeModal={modalProfile.closeModal}
           isVisible={modalProfile.isVisible}
           selectedData={modalProfile.selectedData}
         />
-      )}
+      )} */}
     </Screen>
   );
 };

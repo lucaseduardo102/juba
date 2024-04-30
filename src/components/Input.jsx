@@ -1,7 +1,7 @@
 export function Input({ label, error, ...props }) {
   return (
     <div className="row mb-3">
-      <label className="col-sm-3 col-form-label" for={label}>
+      <label className="col-sm-3 col-form-label" htmlFor={label}>
         {label}
       </label>
       <div className="col-sm-9">
