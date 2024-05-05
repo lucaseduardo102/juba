@@ -1,15 +1,10 @@
-function getProfilesByPermissionType() {
-    return useFetch(
-      permissionApi.getProfilesByPermission,
-    );
-  }
-  function getUsersByPermissionType() {
-    return useFetch(
-      permissionApi.getUsersByPermission,
-    );
-  }
-  
-  export const permissionUseCases = {
-    getProfilesByPermissionType,
-    getUsersByPermissionType,
-  };
+import { useFetch } from "../../hooks/useFetch";
+import { permissionApi } from "./permissionApi";
+
+export function useGetProfilesByPermissionType() {
+  return useFetch(permissionApi.getProfilesByPermission);
+}
+
+export function useGetUsersByPermissionType() {
+  return useFetch(permissionApi.getUsersByPermission);
+}

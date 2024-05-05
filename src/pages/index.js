@@ -1,4 +1,4 @@
-export * from "./Scheduling"
+export * from "./Schedule"
 export * from "./Autenticacao/Autenticacao"
 export * from "./Home"
 export * from "./RecoveryPassword/RecoveryPassword"

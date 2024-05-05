@@ -1,15 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Agendamento, Autenticacao, Home, RecoveryPassword, About, Users, Assessment, Services, ShoppingCart, Payment} from "../pages";
+import {
+  Schedule,
+  Autenticacao,
+  Home,
+  RecoveryPassword,
+  About,
+  Users,
+  Assessment,
+  Services,
+  ShoppingCart,
+  Payment,
+} from "../pages";
 import { Profiles } from "../pages/Profiles";
-
 
 export const AppRouter = () => {
   return (
     <Router>
       <Routes>
-
-        <Route path="*" element={<Autenticacao />}/>
-        <Route path="/agendamento" element={<Agendamento />} />
+        <Route path="*" element={<Autenticacao />} />
+        <Route path="/agendamento" element={<Schedule />} />
         <Route path="/home" element={<Home />} />
         <Route path="/recuperar-senha" element={<RecoveryPassword />} />
         <Route path="/users" element={<Users />} />

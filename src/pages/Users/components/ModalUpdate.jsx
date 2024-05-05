@@ -3,10 +3,10 @@ import { Modal } from "../../../components/Modal";
 import { UpdateUserSchema } from "../../../utils";
 import { UserForm } from "./UserForm";
 import { useEffect, useState } from "react";
-import { useUserUpdate } from "../../../domain/UserDomain";
 import { AlertStatus } from "../../../components";
+import { useUserUpdate } from "../../../domain";
 
-export function ModalUpdateUser({ isVisible, closeModal, user }) {
+export function ModalUpdate({ closeModal, user }) {
   const { mutate, isSuccess, isError } = useUserUpdate();
 
   const [permission, setPermission] = useState(user?.permission ?? "CLIENTE");
@@ -39,7 +39,6 @@ export function ModalUpdateUser({ isVisible, closeModal, user }) {
 
   return (
     <Modal
-      isVisible={isVisible}
       handleVisibility={closeModal}
       headerTitle="Gerenciar usuário"
       confirmButtonProps={{ onClick: formik.handleSubmit }}

@@ -1,6 +1,6 @@
 import { AlertStatus } from "../../../components";
 import { Modal } from "../../../components/Modal";
-import { useProfileRemove } from "../../../domain/Profile/profileUseCases";
+import { useProfileRemove } from "../../../domain/ProfileDomain/profileUseCases";
 
 export function ModalDelete({ modalDelete, selectedProfile }) {
   const { mutate, isError, isSuccess } = useProfileRemove();

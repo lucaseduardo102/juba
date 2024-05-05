@@ -1,8 +1,8 @@
-import { useProfileCreate } from "../../../domain/Profile/profileUseCases";
+import { useProfileCreate } from "../../../domain/ProfileDomain/profileUseCases";
 import { ModalProfile } from "./ModalProfile";
 
 export function ModalCreate({ modalCreate, userId }) {
-  const { mutate, isError, isSuccess } = useProfileCreate();
+  const { mutate, isError, isSuccess, isPending } = useProfileCreate();
 
   const sendForm = (name, cpf, statusProfile) => {
     mutate({ name, cpf, statusProfile, userId });
@@ -15,6 +15,7 @@ export function ModalCreate({ modalCreate, userId }) {
       headerTitle="Adicionar perfil"
       isError={isError}
       isSuccess={isSuccess}
+      isPending={isPending}
       sendForm={sendForm}
     />
   );

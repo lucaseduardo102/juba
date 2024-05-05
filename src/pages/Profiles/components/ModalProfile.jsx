@@ -11,6 +11,7 @@ export function ModalProfile({
   headerTitle,
   isError,
   isSuccess,
+  isPending,
   sendForm,
 }) {
   const [statusProfile, setStatusProfile] = useState(
@@ -33,7 +34,9 @@ export function ModalProfile({
       isVisible
       handleVisibility={handleVisibility}
       headerTitle={headerTitle}
-      customFooter={<ModalFooter onClick={formik.handleSubmit} />}
+      customFooter={
+        <ModalFooter onClick={formik.handleSubmit} isPending={isPending} />
+      }
     >
       <AlertStatus
         isError={isError}
@@ -50,10 +53,15 @@ export function ModalProfile({
   );
 }
 
-function ModalFooter({ onClick }) {
+function ModalFooter({ onClick, isPending }) {
   return (
     <div className="modal-footer">
-      <button type="submit" className="btn btn-primary" onClick={onClick}>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        onClick={onClick}
+        disabled={isPending}
+      >
         Salvar
       </button>
     </div>

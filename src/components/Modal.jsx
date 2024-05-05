@@ -11,10 +11,12 @@ export function Modal({
   return (
     <>
       <div
-        className={`modal fade ${isVisible ? "show" : ""}`}
+        className="modal fade show"
         tabIndex="-1"
-        role="dialog"
-        style={{ display: isVisible ? "block" : "none" }}
+        style={{
+          display: "block",
+          ...style.modalBackdrop,
+        }}
       >
         <div className={`modal-dialog ${isLarge && "modal-lg"}`}>
           <div className="modal-content">
@@ -54,6 +56,19 @@ export function Modal({
           </div>
         </div>
       </div>
+      <div></div>
     </>
   );
 }
+
+const style = {
+  modalBackdrop: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // cor escura com 50% de opacidade
+    zIndex: 1040, // z-index deve ser menor que o z-index do modal (1050 por padrão)
+  },
+};

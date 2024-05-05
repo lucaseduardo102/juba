@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Screen, ScreenTitle, Table, TableHead } from "../../components";
-import { useUserGetById } from "../../domain/UserDomain";
 import { useVisibility } from "../../hooks/useVisibility";
 import { mask } from "../../utils";
-import { ModalProfile } from "./components/ModalProfile";
-import {
-  useProfileCreate,
-  useProfileUpdate,
-} from "../../domain/Profile/profileUseCases";
-import { Modal } from "../../components/Modal";
 import { ModalUpdate } from "./components/ModalUpdate";
 import { ModalCreate } from "./components/ModalCreate";
 import { ModalDelete } from "./components/ModalDelete";
+import { useUserGetById } from "../../domain";
 
 export function Profiles() {
   const { userId } = useParams();
@@ -43,40 +37,40 @@ export function Profiles() {
       )}
       {user && user?.profiles && (
         <>
-          <div className="d-flex align-items-center">
-            <div className="text-center flex-grow-1">
-              <ScreenTitle text="Perfis" />
-            </div>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={modalCreate.handleVisibility}
-            >
-              <i className="bi bi-plus"></i> Adicionar
-            </button>
-          </div>
+          <ScreenTitle text="Perfis" />
           <div className="col-12">
             <Table>
-              <TableHeaderLine />
+              <TableHeaderLine
+                AddButton={
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary"
+                    onClick={modalCreate.handleVisibility}
+                  >
+                    <i className="bi bi-plus-lg"></i> Adicionar
+                  </button>
+                }
+              />
               <tbody>
                 {user?.profiles?.map((profile, index) => (
                   <tr key={index}>
-                    <td className="col-3">{profile.name}</td>
+                    <td className="col-4">{profile.name}</td>
                     <td className="col-4 text-center">
                       {mask.cpf(profile.cpf)}
                     </td>
                     <td className="col-2 text-center">
                       {profile.statusProfile ? "Ativo" : "Inativo"}
                     </td>
-                    <td className="col-2 ">
+                    <td className="col-2">
                       <div className="d-flex justify-content-evenly">
                         <button
-                          className="btn btn-sm btn-warning"
+                          className="btn btn-sm btn-outline-dark"
                           onClick={() => openModalUpdate(profile)}
                         >
                           <i className="bi bi-pencil-square"></i>
                         </button>
                         <button
-                          className="btn btn-sm btn-danger"
+                          className="btn btn-sm btn-outline-dark"
                           onClick={() => openModalDelete(profile)}
                         >
                           <i className="bi bi-trash-fill"></i>
@@ -114,11 +108,11 @@ export function Profiles() {
   );
 }
 
-function TableHeaderLine() {
+function TableHeaderLine({ AddButton }) {
   return (
     <TableHead>
       <tr>
-        <th scope="col" className="col-3">
+        <th scope="col" className="col-4">
           Nome
         </th>
         <th scope="col" className="col-4 text-center">
@@ -127,8 +121,8 @@ function TableHeaderLine() {
         <th scope="col" className="col-2 text-center">
           Status
         </th>
-        <th scope="col" className="col-1 text-center">
-          Status
+        <th scope="col" className="col-2 text-center">
+          {AddButton}
         </th>
       </tr>
     </TableHead>

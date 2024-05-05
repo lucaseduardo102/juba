@@ -2,11 +2,11 @@ import {api} from '../../api';
 
 const PATH = '/permissions';
 
-async function getUsersByPermission() {
+async function getUsersByPermission(permissionType) {
   return await api.get(`${PATH}/${permissionType}/users`);
 }
 
-async function getProfilesByPermission() {
+async function getProfilesByPermission(permissionType) {
   return await api.get(`${PATH}/${permissionType}/profiles`);
 }
 

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Alert, Box, Button, Form, Icon, Input } from "../../components";
 import { useFormik } from "formik";
 import { RecoveryPassSchema, mask } from "../../utils";
-import { useRecoveryPassword } from "../../domain/Profile/profileUseCases";
+import { useRecoveryPassword } from "../../domain/ProfileDomain/profileUseCases";
 
 export function RecoveryPassword() {
   const { fetch, status } = useRecoveryPassword();

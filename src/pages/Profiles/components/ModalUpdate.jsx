@@ -1,8 +1,8 @@
-import { useProfileUpdate } from "../../../domain/Profile/profileUseCases";
+import { useProfileUpdate } from "../../../domain/ProfileDomain/profileUseCases";
 import { ModalProfile } from "./ModalProfile";
 
 export function ModalUpdate({ modalUpdate, selectedProfile }) {
-  const { mutate, isError, isSuccess } = useProfileUpdate();
+  const { mutate, isError, isSuccess, isPending } = useProfileUpdate();
 
   if (selectedProfile) {
     const sendForm = (name, cpf, statusProfile) => {
@@ -17,6 +17,7 @@ export function ModalUpdate({ modalUpdate, selectedProfile }) {
         sendForm={sendForm}
         isError={isError}
         isSuccess={isSuccess}
+        isPending={isPending}
       />
     );
   }

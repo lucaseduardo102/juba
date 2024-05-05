@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
-import { useUserGetAll } from "../../domain/UserDomain";
-import "../Users/index.css";
 import { useVisibility } from "../../hooks/useVisibility";
-import { ModalUpdateUser } from "./components/ModalUpdateUser";
+import { ModalUpdate } from "./components/ModalUpdate";
+
+import { ModalCreate } from "./components/ModalCreate";
+import { useUserGetAll } from "../../domain";
 
 export const Users = () => {
-  const { data, isError } = useUserGetAll();
+  const { data } = useUserGetAll();
 
   const modalUpdateUser = useModalFunctions();
-  const modalProfile = useModalFunctions();
+  const modalCreateUser = useVisibility();
 
   const navigate = useNavigate();
 
@@ -25,14 +26,20 @@ export const Users = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col" className="col-3">
+              <th scope="col" className="col-6">
                 E-mail
               </th>
-              <th scope="col" className="col-2 text-center">
+              <th scope="col" className="col-4 text-center">
                 Permissão
               </th>
               <th scope="col" className="col-2 text-center">
-                Ações
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary"
+                  onClick={modalCreateUser.handleVisibility}
+                >
+                  <i className="bi bi-plus-lg"></i> Adicionar
+                </button>
               </th>
             </tr>
           </thead>
@@ -45,23 +52,18 @@ export const Users = () => {
                 <td className="col-3 text-center">
                   <button
                     type="button"
-                    className="btn btn-warning m-1"
+                    className="btn btn-sm btn-outline-dark m-1"
                     onClick={() => modalUpdateUser.openModal(user)}
                   >
-                    Editar
+                    <i className="bi bi-pencil-square"></i>
                   </button>
 
                   <button
                     type="button"
-                    className="btn btn-dark m-1"
-                    onClick={
-                      () => navigateToProfileScreen(user?.id)
-                      // modalProfile.openModal({
-                      // userId: user?.id,
-                      // })
-                    }
+                    className="btn btn-sm btn-outline-dark m-1"
+                    onClick={() => navigateToProfileScreen(user?.id)}
                   >
-                    Ver perfis
+                    <i className="bi bi-info-square"></i>
                   </button>
                 </td>
               </tr>
@@ -70,20 +72,15 @@ export const Users = () => {
         </table>
       </div>
 
-      {modalUpdateUser.selectedData && (
-        <ModalUpdateUser
+      {modalUpdateUser.isVisible && modalUpdateUser.selectedData && (
+        <ModalUpdate
           closeModal={modalUpdateUser.closeModal}
-          isVisible={modalUpdateUser.isVisible}
           user={modalUpdateUser.selectedData}
         />
       )}
-      {/* {modalProfile.selectedData && (
-        <ModalProfile
-          closeModal={modalProfile.closeModal}
-          isVisible={modalProfile.isVisible}
-          selectedData={modalProfile.selectedData}
-        />
-      )} */}
+      {modalCreateUser.isVisible && (
+        <ModalCreate closeModal={modalCreateUser.handleVisibility} />
+      )}
     </Screen>
   );
 };
