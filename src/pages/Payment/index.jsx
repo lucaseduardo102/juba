@@ -1,49 +1,59 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Screen, ScreenTitle } from "../../components";
-import './index.css'
+import { PaymentBox } from "./PaymentModule";
+import { Card } from "react-bootstrap";
+import { useScheduleStore } from "../../services";
+import { mask } from "../../utils";
+import { Navigate } from "react-router-dom";
 
 export function Payment() {
-  return (
-    <Screen>
-      <div className="container">
-        <ScreenTitle>Finalizar Pagamento</ScreenTitle>
+  const {
+    appointment: { date, time, client, employee, specialty },
+  } = useScheduleStore();
 
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card mb-3">
-              <div className="card-body">
-                <h5 className="pagamento-title">Resumo do Pedido</h5>
-                <p className="pagamento-text">Subtotal: R$ 99.99</p>
-                <p className="pagamento-text">Frete: R$ 10.00</p>
-                <p className="pagamento-text">Total: R$ 109.99</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="card mb-3">
-              <div className="card-body">
-                <h5 className="pagamento-title">Forma de Pagamento</h5>
-                <form>
-                  <div className="mb-3">
-                    <label htmlFor="pagamento-creditCardNumber" className="pagamento-label">Número do Cartão</label>
-                    <input type="text" className="pagamento-control" id="pagamento-creditCardNumber" />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="pagamento-expirationDate" className="pagamento-label">Data de Expiração</label>
-                    <input type="text" className="pagamento-control" id="pagamento-expirationDate" />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="pagamento-cvv" className="pagamento-label">CVV</label>
-                    <input type="text" className="pagamento-control" id="pagamento-cvv" />
-                  </div>
-                  <button type="submit" className="btn btn-primary">Finalizar Pagamento</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  if (!client) {
+    return <Navigate replace to="/agendamento" />;
+  }
+
+  return (
+    <Screen className="mb-5">
+      <ScreenTitle>Pagamento</ScreenTitle>
+      <Card className="mb-4">
+        <Card.Body>
+          <Card.Title>Resumo</Card.Title>
+          <article className="mt-4">
+            <PropertyDisplay
+              title="Dia:"
+              value={mask.parseDateToBrl(date) + " às " + time + "h"}
+            />
+            <PropertyDisplay title="Funcionário:" value={employee?.name} />
+            <PropertyDisplay title="Especialidade:" value={specialty?.name} />
+            <PropertyDisplay
+              title="Preço:"
+              value={specialty?.price.toLocaleString("pt-Br", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            />
+            <PropertyDisplay title="Cliente:" value={client?.name} />
+          </article>
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Body>
+          <Card.Title className="text-center">Método de Pagamento</Card.Title>
+
+          <PaymentBox />
+        </Card.Body>
+      </Card>
     </Screen>
+  );
+}
+
+function PropertyDisplay({ title, value }) {
+  return (
+    <div className="mb-2">
+      <b>{title}</b> {value}
+    </div>
   );
 }

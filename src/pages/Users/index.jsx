@@ -21,7 +21,7 @@ export const Users = () => {
 
   return (
     <Screen>
-      <ScreenTitle text="Lista de Usuários" />
+      <ScreenTitle>Lista de Usuários</ScreenTitle>
       <div className="col-12">
         <table className="table table-striped">
           <thead>

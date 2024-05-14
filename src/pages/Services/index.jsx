@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { NavBar } from "../../components/NavBar";
 import "../../assets/global.css";
-import Footer from "../../components/Footer";
-import { ScreenTitle } from "../../components";
+import { Screen, ScreenTitle } from "../../components";
 
 export const Services = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,9 +13,8 @@ export const Services = () => {
   };
 
   return (
-    <>
-      <NavBar />
-      <ScreenTitle text="Catálogo de Serviços" />
+    <Screen>
+      <ScreenTitle>Catálogo de Serviços</ScreenTitle>
       <div className="col-12 col-md-10 offset-md-1">
         <div className="row">
           <div className="col-12 col-md-4">
@@ -140,8 +137,6 @@ export const Services = () => {
           )}
         </Modal.Body>
       </Modal>
-
-      <Footer />
-    </>
+    </Screen>
   );
 };

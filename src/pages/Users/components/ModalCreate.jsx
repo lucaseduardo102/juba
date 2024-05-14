@@ -7,7 +7,7 @@ import { AlertStatus } from "../../../components";
 import { useUserCreate } from "../../../domain";
 
 export function ModalCreate({ closeModal }) {
-  const { mutate, isError, isSuccess, isPending } = useUserCreate();
+  const { mutate, isError, isSuccess } = useUserCreate();
 
   const [permission, setPermission] = useState("CLIENTE");
 

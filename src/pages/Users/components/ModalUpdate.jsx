@@ -35,7 +35,7 @@ export function ModalUpdate({ closeModal, user }) {
       email: user?.email,
     });
     setPermission(user?.permission);
-  }, [user]);
+  }, [user, formik]);
 
   return (
     <Modal

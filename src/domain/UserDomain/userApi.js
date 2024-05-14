@@ -1,25 +1,25 @@
 import { api } from "../../api";
 
-const PATH = '/users';
+const PATH = "/users";
 
 async function getById(userId) {
-  return (await api.get(`${PATH}/${userId}`)).data;
+  const { data } = await api.get(PATH + "/" + userId);
+  return data;
 }
 
-async function getAll({profiles}) {
-  return (await api.get(PATH, {params:{profiles}})).data;
-}
-
-async function getProfilesByUser(userId) {
-  return await api.get(`${PATH}/${userId}/profiles`);
+async function getAll(profiles) {
+  const { data } = await api.get(PATH, { params: { profiles } });
+  return data;
 }
 
 async function auth(request) {
-  return await api.post(`/auth`, request);
+  const { data } = await api.post(`/auth`, request);
+  return data;
 }
 
 async function create(request) {
-  return await api.post(PATH, request);
+  const { data } = await api.post(PATH, request);
+  return data;
 }
 /* 
 async function update(request) {
@@ -31,21 +31,19 @@ async function update(request) {
 }
 */
 
-async function update({userId, email, password, permission}) {
+async function update({ userId, email, password, permission }) {
   const response = await api.patch(`${PATH}/${userId}`, {
     email,
     password,
-    permission
+    permission,
   });
-  return response.data
+  return response.data;
 }
-
 
 export const userApi = {
   auth,
   create,
   getById,
   getAll,
-  getProfilesByUser,
   update,
 };

@@ -1,34 +1,46 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes as RoutesRRD,
+  Route,
+} from "react-router-dom";
 import {
   Schedule,
-  Autenticacao,
+  Authentication,
   Home,
   RecoveryPassword,
+  MyAppointments,
   About,
   Users,
-  Assessment,
   Services,
   ShoppingCart,
   Payment,
 } from "../pages";
 import { Profiles } from "../pages/Profiles";
+import { useAuthStore } from "../services";
 
-export const AppRouter = () => {
+export function Routes() {
+  const { authCredentials } = useAuthStore();
+
   return (
     <Router>
-      <Routes>
-        <Route path="*" element={<Autenticacao />} />
-        <Route path="/agendamento" element={<Schedule />} />
-        <Route path="/home" element={<Home />} />
+      <RoutesRRD>
+        <Route path="*" element={<Authentication />} />
         <Route path="/recuperar-senha" element={<RecoveryPassword />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/profiles/:userId" element={<Profiles />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/assessment" element={<Assessment />} />
-        <Route path="/shopping-cart" element={<ShoppingCart />} />
-        <Route path="/payment" element={<Payment />} />
-      </Routes>
+
+        {authCredentials?.user?.permission === "ADMIN" && (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/agendamento" element={<Schedule />} />
+            <Route path="/meus-agendamentos" element={<MyAppointments />} />
+            <Route path="/profiles/:userId" element={<Profiles />} />
+            <Route path="/payment" element={<Payment replace />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/shopping-cart" element={<ShoppingCart />} />
+            <Route path="/about" element={<About />} />
+          </>
+        )}
+      </RoutesRRD>
     </Router>
   );
-};
+}

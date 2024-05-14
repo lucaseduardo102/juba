@@ -1,28 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { Alert, Box, Button, Form, Icon, Input } from "../../components";
+import { Alert, Box, Icon, Toast } from "../../components";
 import { useFormik } from "formik";
 import { RecoveryPassSchema, mask } from "../../utils";
 import { useRecoveryPassword } from "../../domain/ProfileDomain/profileUseCases";
+import { Col, Container, Form, Row, Button } from "react-bootstrap";
 
 export function RecoveryPassword() {
   const { fetch, status } = useRecoveryPassword();
-  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
-    useFormik({
-      validationSchema: RecoveryPassSchema,
-      initialValues: {
-        email: "",
-        cpf: "",
-        password: "",
-        checkPass: "",
-      },
-      onSubmit: () => {
-        fetch({
-          email: values.email,
-          profileCpf: mask.removeCpf(values.cpf),
-          newPassword: values.password,
-        })
-      }
-    })
+  const formik = useFormik({
+    validationSchema: RecoveryPassSchema,
+    initialValues: {
+      email: "",
+      cpf: "",
+      password: "",
+      checkPass: "",
+    },
+    onSubmit: (values) => {
+      fetch({
+        email: values.email,
+        profileCpf: mask.removeCpf(values.cpf),
+        newPassword: values.password,
+      });
+    },
+  });
 
   const navigate = useNavigate();
   const navigateToAuthPage = () => {
@@ -41,7 +41,8 @@ export function RecoveryPassword() {
           state.type = "success";
           break;
         case 401:
-          state.message = "CPF não encontrado, entre em contato com o administrador.";
+          state.message =
+            "CPF não encontrado, entre em contato com o administrador.";
           break;
         default:
           state.message = "E-mail e/ou CPF não encontrados.";
@@ -51,74 +52,98 @@ export function RecoveryPassword() {
     }
   }
   return (
-    <Box columnSize={4}>
-      <Form>
-        <>
-          <div className="d-flex justify-content-center">
-            <Icon name="lock" size={100} />
-          </div>
-          <h3 className="text-center pb-3">Esqueci minha senha</h3>
+    <Container fluid="sm">
+      <Toast />
+      <Row
+        className="justify-content-md-center bg-body-tertiary  border b-1 shadow p-5 m-5 rounded"
+        xs={1}
+        sm={1}
+      >
+        <Col md={5}>
+          <Form>
+            <div className="text-center mb-5">
+              <Icon name="lock" size={100} />
+              <h3 className="">Esqueci minha senha</h3>
+            </div>
 
-          <p className="text-center pb-3">
-            Informe seu E-mail e CPF para alterar sua senha.
-          </p>
-          <StatusAlert status={status} />
-          <Input
-            label="E-mail"
-            type="email"
-            placeholder="lucas@exemplo.com"
-            value={values.email}
-            onChange={handleChange("email")}
-            onBlur={handleBlur("email")}
-            maxLength={35}
-            error={touched.email && errors.email}
-          />
+            <Form.Group className="mb-2">
+              <Form.Label>E-mail</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="juan@example.com"
+                maxLength={35}
+                value={formik.values.email}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                isInvalid={formik.errors.email && formik.touched.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Input
-            label="CPF"
-            type="text"
-            placeholder="123.456.789-10"
-            value={mask.cpf(values.cpf)}
-            onChange={handleChange("cpf")}
-            onBlur={handleBlur("cpf")}
-            maxLength={14}
-            error={touched.cpf && errors.cpf}
-          />
+            <Form.Group className="mb-2">
+              <Form.Label>CPF</Form.Label>
+              <Form.Control
+                name="cpf"
+                type="text"
+                placeholder="123.456.789-10"
+                maxLength={14}
+                value={mask.cpf(formik.values.cpf)}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                isInvalid={formik.errors.cpf && formik.touched.cpf}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.cpf}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Input
-            label="Nova senha"
-            type="password"
-            placeholder="********"
-            value={values.password}
-            onChange={handleChange("password")}
-            onBlur={handleBlur("password")}
-            minLength={8}
-            maxLength={12}
-            error={touched.password && errors.password}
-          />
+            <Form.Group className="mb-2">
+              <Form.Label>Nova senha</Form.Label>
+              <Form.Control
+                name="password"
+                type="password"
+                placeholder="123.456.789-10"
+                minLength={8}
+                maxLength={12}
+                value={formik.values.password}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                isInvalid={formik.errors.password && formik.touched.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.password}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Input
-            label="Confirmar senha"
-            type="password"
-            placeholder="********"
-            value={values.checkPass}
-            onChange={handleChange("checkPass")}
-            onBlur={handleBlur("checkPass")}
-            minLength={8}
-            maxLength={12}
-            error={touched.checkPass && errors.checkPass}
-          />
+            <Form.Group className="mb-2">
+              <Form.Label>Confirmar senha</Form.Label>
+              <Form.Control
+                name="checkPass"
+                type="checkPass"
+                placeholder="123.456.789-10"
+                minLength={8}
+                maxLength={12}
+                value={formik.values.checkPass}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                isInvalid={formik.errors.checkPass && formik.touched.checkPass}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.checkPass}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <div class="d-grid gap-3 d-flex justify-content-md-end">
-            <Button
-              color="secondary"
-              text={"Voltar"}
-              onClick={navigateToAuthPage}
-            />
-            <Button text="Enviar" onClick={handleSubmit} />
-          </div>
-        </>
-      </Form>
-    </Box>
+            <div class="d-flex justify-content-end" style={{ marginTop: 50 }}>
+              <Button variant="outline-dark" onClick={formik.handleSubmit}>
+                Enviar
+              </Button>
+            </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 }

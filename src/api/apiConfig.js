@@ -7,3 +7,15 @@ export const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+// api.interceptors.request.use((values) => {
+//   console.log(values.url + "/" + JSON.stringify(values.params));
+//   return values;
+// });
+
+export function registerToken({ authCredentials }) {
+  api.interceptors.request.use((config) => {
+    config.headers.Authorization = "Bearer " + authCredentials.accessToken;
+    return config;
+  });
+}

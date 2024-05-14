@@ -37,7 +37,7 @@ export function Profiles() {
       )}
       {user && user?.profiles && (
         <>
-          <ScreenTitle text="Perfis" />
+          <ScreenTitle>Perfis</ScreenTitle>
           <div className="col-12">
             <Table>
               <TableHeaderLine
