@@ -23,7 +23,7 @@ export function useProfileCreate() {
 }
 
 export function useRecoveryPassword() {
-  return useFetch(profileApi.recoveryPassword);
+  return useMutation({ mutationFn: profileApi.recoveryPassword });
 }
 
 export function useProfileRemove() {

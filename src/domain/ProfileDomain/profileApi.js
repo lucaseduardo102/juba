@@ -8,7 +8,8 @@ async function create(request) {
 }
 
 async function recoveryPassword(request) {
-  return await api.post(`${PATH}/recovery-password`, request);
+  const { data } = await api.post(PATH + "/recovery-password", request);
+  return data;
 }
 
 async function update(request) {

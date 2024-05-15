@@ -1,9 +1,13 @@
-const ToastMessages = {
+export const ToastMessages = {
   SignUp: {
-    Success: "Cadastro realizado com sucesso.",
-    Error: "Usuário já cadastrado no sistema",
+    success: "Cadastro realizado com sucesso.",
+    error: "Usuário já cadastrado no sistema",
   },
   SignIn: {
-    Error: "Usuário e/ou senha incorretos",
+    error: "Usuário e/ou senha incorretos",
+  },
+  RecoveryPassword: {
+    success: "Senha alterada com sucesso",
+    error: "Dados incorretos",
   },
 };

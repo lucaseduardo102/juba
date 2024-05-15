@@ -1,56 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { Alert, Box, Icon, Toast } from "../../components";
+import { Icon, Toast } from "../../components";
 import { useFormik } from "formik";
 import { RecoveryPassSchema, mask } from "../../utils";
 import { useRecoveryPassword } from "../../domain/ProfileDomain/profileUseCases";
-import { Col, Container, Form, Row, Button } from "react-bootstrap";
+import { Col, Container, Form, Row, Button, Spinner } from "react-bootstrap";
+import { ToastMessages, useToastStore } from "../../services";
 
 export function RecoveryPassword() {
-  const { fetch, status } = useRecoveryPassword();
-  const formik = useFormik({
-    validationSchema: RecoveryPassSchema,
-    initialValues: {
-      email: "",
-      cpf: "",
-      password: "",
-      checkPass: "",
-    },
-    onSubmit: (values) => {
-      fetch({
-        email: values.email,
-        profileCpf: mask.removeCpf(values.cpf),
-        newPassword: values.password,
-      });
-    },
-  });
+  const { formik, isPending } = useRecoveryPasswordService();
 
-  const navigate = useNavigate();
-  const navigateToAuthPage = () => {
-    navigate("/");
-  };
-
-  function StatusAlert({ status }) {
-    const state = {
-      message: null,
-      type: "danger",
-    };
-    if (status) {
-      switch (status) {
-        case 204:
-          state.message = "Senha alterada com sucesso.";
-          state.type = "success";
-          break;
-        case 401:
-          state.message =
-            "CPF não encontrado, entre em contato com o administrador.";
-          break;
-        default:
-          state.message = "E-mail e/ou CPF não encontrados.";
-          break;
-      }
-      return <Alert type={state.type} message={state.message} />;
-    }
-  }
   return (
     <Container fluid="sm">
       <Toast />
@@ -136,9 +94,9 @@ export function RecoveryPassword() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <div class="d-flex justify-content-end" style={{ marginTop: 50 }}>
+            <div className="d-flex justify-content-end" style={{ marginTop: 50 }}>
               <Button variant="outline-dark" onClick={formik.handleSubmit}>
-                Enviar
+                Enviar {isPending && <Spinner />}
               </Button>
             </div>
           </Form>
@@ -147,3 +105,42 @@ export function RecoveryPassword() {
     </Container>
   );
 }
+
+const useRecoveryPasswordService = () => {
+  const { mutate, isPending } = useRecoveryPassword();
+  const { showToast } = useToastStore();
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    validationSchema: RecoveryPassSchema,
+    initialValues: {
+      email: "",
+      cpf: "",
+      password: "",
+      checkPass: "",
+    },
+    onSubmit: (values) => {
+      mutate(
+        {
+          email: values.email,
+          profileCpf: mask.removeCpf(values.cpf),
+          newPassword: values.password,
+        },
+        {
+          onSuccess: () => {
+            showToast({ message: ToastMessages.RecoveryPassword.success });
+            navigate("/");
+          },
+          onError: () => {
+            showToast({ message: ToastMessages.RecoveryPassword.error });
+          },
+        }
+      );
+    },
+  });
+
+  return {
+    isPending,
+    formik,
+  };
+};

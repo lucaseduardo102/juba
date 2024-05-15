@@ -25,10 +25,10 @@ export function SignUp() {
         },
         {
           onSuccess: () => {
-            showToast({ message: ToastMessages.SignUp.Success });
+            showToast({ message: ToastMessages.SignUp.success });
           },
           onError: () => {
-            showToast({ message: ToastMessages.SignUp.Error });
+            showToast({ message: ToastMessages.SignUp.error });
           },
         }
       ),
