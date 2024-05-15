@@ -15,7 +15,7 @@ export function WhatsApp() {
 const style = {
   btnWhats: {
     backgroundColor: "#25D366",
-    position: "absolute",
+    position: "fixed",
     width: "70px",
     height: "70px",
     borderRadius: "800px",

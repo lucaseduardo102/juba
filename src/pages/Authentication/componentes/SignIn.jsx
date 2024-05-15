@@ -1,51 +1,18 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { LoginSchema } from "../../../utils/index";
+import { LoginSchema } from "../../../utils";
 import { useUserAuth } from "../../../domain";
-import { useAuthStore,ToastMessages } from "../../../services";
+import { useAuthStore, ToastMessages } from "../../../services";
 import { useToastStore } from "../../../services";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { ScreenTitle } from "../../../components/";
+import { useEffect } from "react";
 
 export function SignIn() {
-  const navigate = useNavigate();
-  const { data: authResponse, isPending, mutate } = useUserAuth();
-  const { authCredentials, saveCredentials } = useAuthStore();
-  const { showToast } = useToastStore();
-
-
-  if (authResponse) {
-    saveCredentials(authResponse);
-  }
-
-  if (authCredentials) {
-    saveCredentials(authCredentials);
-    navigate("/home");
-  }
-
-  const formik = useFormik({
-    validationSchema: LoginSchema,
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: (values) =>
-      mutate(
-        { ...values },
-        {
-          onError: () => {
-            showToast({ message: ToastMessages.SignIn.error });
-          },
-        }
-      ),
-  });
-
-  if (authCredentials?.user.id) {
-    return <Navigate to="/home" />;
-  }
+  const { formik, isPending } = useSignInService();
 
   return (
-    <Form className="p-5">
+    <Form className="bg-body-tertiary border b-1 shadow p-5 rounded">
       <Form.Group className="mb-2">
         <ScreenTitle>Login</ScreenTitle>
 
@@ -77,7 +44,9 @@ export function SignIn() {
           onBlur={formik.handleBlur}
           isInvalid={formik.errors.password && formik.touched.password}
         />
-        <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {formik.errors.password}
+        </Form.Control.Feedback>
       </Form.Group>
 
       <div className="text-center mt-5">
@@ -101,3 +70,39 @@ export function SignIn() {
     </Form>
   );
 }
+
+const useSignInService = () => {
+  const navigate = useNavigate();
+  const { data: authResponse, isPending, mutate } = useUserAuth();
+  const { saveCredentials } = useAuthStore();
+  const { showToast } = useToastStore();
+
+  useEffect(() => {
+    if (authResponse) {
+      saveCredentials(authResponse);
+      navigate("/home");
+    }
+  }, [authResponse]);
+
+  const formik = useFormik({
+    validationSchema: LoginSchema,
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) =>
+      mutate(
+        { ...values },
+        {
+          onError: () => {
+            showToast({ message: ToastMessages.SignIn.error });
+          },
+        }
+      ),
+  });
+
+  return {
+    formik,
+    isPending,
+  };
+};

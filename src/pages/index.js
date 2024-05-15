@@ -1,5 +1,7 @@
 export * from "./Schedule";
 export * from "./Authentication/Authentication";
+export * from "./Catalog";
+export * from "./CatalogList";
 export * from "./Home";
 export * from "./RecoveryPassword/RecoveryPassword";
 export * from "./About";

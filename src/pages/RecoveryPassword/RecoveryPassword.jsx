@@ -10,14 +10,18 @@ export function RecoveryPassword() {
   const { formik, isPending } = useRecoveryPasswordService();
 
   return (
-    <Container fluid="sm">
+    <Container fluid>
       <Toast />
-      <Row
-        className="justify-content-md-center bg-body-tertiary  border b-1 shadow p-5 m-5 rounded"
-        xs={1}
-        sm={1}
-      >
-        <Col md={5}>
+      <Row className="justify-content-center m-5">
+        <Col
+          className="bg-body-tertiary border b-1 shadow p-5 rounded"
+          xs={12}
+          sm={12}
+          md={8}
+          lg={8}
+          xl={5}
+          xxl={3}
+        >
           <Form>
             <div className="text-center mb-5">
               <Icon name="lock" size={100} />
@@ -94,7 +98,10 @@ export function RecoveryPassword() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <div className="d-flex justify-content-end" style={{ marginTop: 50 }}>
+            <div
+              className="d-flex justify-content-end"
+              style={{ marginTop: 50 }}
+            >
               <Button variant="outline-dark" onClick={formik.handleSubmit}>
                 Enviar {isPending && <Spinner />}
               </Button>

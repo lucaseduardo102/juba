@@ -8,7 +8,7 @@ export function Authentication() {
   return (
     <Container
       fluid="sm"
-      className="bg-body-tertiary border rounded shadow b-1 mt-5 p-5 "
+      className="bg-white border rounded shadow b-1 mt-5 mx-auto p-5"
     >
       <Toast />
       <WhatsApp />

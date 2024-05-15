@@ -6,6 +6,8 @@ import {
 import {
   Schedule,
   Authentication,
+  Catalog,
+  CatalogList,
   Home,
   RecoveryPassword,
   MyAppointments,
@@ -28,11 +30,13 @@ export function Routes() {
         <Route path="*" element={<Authentication />} />
         <Route path="/recuperar-senha" element={<RecoveryPassword />} />
 
-        {authCredentials?.user?.permission === "CLIENTE" && (
+        {authCredentials?.user?.permission !== "" && (
           <>
             <Route path="/home" element={<Home />} />
             <Route path="/agendamento" element={<Schedule />} />
             <Route path="/meus-agendamentos" element={<MyAppointments />} />
+            <Route path="/gerenciamento/catalogo" element={<Catalog />} />
+            <Route path="/lista-de-servicos" element={<CatalogList />} />
             <Route path="/profiles/:userId" element={<Profiles />} />
             <Route path="/payment" element={<Payment replace />} />
             <Route path="/services" element={<Services />} />

@@ -35,7 +35,7 @@ export function SignUp() {
   });
 
   return (
-    <Form className="bg-body-secondary  border b-1 shadow p-5 rounded">
+    <Form className="p-5">
       <ScreenTitle>Cadastre-se</ScreenTitle>
       <Form.Group className="mb-2">
         <Form.Label>E-mail</Form.Label>
@@ -66,8 +66,11 @@ export function SignUp() {
           onBlur={formik.handleBlur}
           isInvalid={formik.errors.password && formik.touched.password}
         />
-        <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {formik.errors.password}
+        </Form.Control.Feedback>
       </Form.Group>
+
       <Form.Group className="mb-2">
         <Form.Label>Confirmar senha</Form.Label>
         <Form.Control
