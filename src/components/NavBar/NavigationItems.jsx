@@ -19,6 +19,9 @@ export function NavigationItems({ location }) {
             <NavItem to="/meus-agendamentos" pathname={location.pathname}>
               Meus Agendamentos
             </NavItem>
+            <NavItem to="/minha-conta" pathname={location.pathname}>
+              Minha conta
+            </NavItem>
           </>
         )}
         <NavItem to="/lista-de-servicos" pathname={location.pathname}>

@@ -14,6 +14,7 @@ import {
   Services,
   ShoppingCart,
   Payment,
+  MyAccount,
 } from "../pages";
 import { Profiles } from "../pages/Profiles";
 import { useAuthStore } from "../services";
@@ -27,7 +28,7 @@ export function Routes() {
         <Route path="*" element={<Authentication />} />
         <Route path="/recuperar-senha" element={<RecoveryPassword />} />
 
-        {authCredentials?.user?.permission === "ADMIN" && (
+        {authCredentials?.user?.permission === "CLIENTE" && (
           <>
             <Route path="/home" element={<Home />} />
             <Route path="/agendamento" element={<Schedule />} />
@@ -36,6 +37,7 @@ export function Routes() {
             <Route path="/payment" element={<Payment replace />} />
             <Route path="/services" element={<Services />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/minha-conta" element={<MyAccount />} />
             <Route path="/shopping-cart" element={<ShoppingCart />} />
             <Route path="/about" element={<About />} />
           </>
