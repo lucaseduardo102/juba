@@ -35,10 +35,10 @@ export const Users = () => {
               <th scope="col" className="col-2 text-center">
                 <button
                   type="button"
-                  className="btn btn-sm btn-primary"
+                  className="btn btn-sm btn-outline-dark"
                   onClick={modalCreateUser.handleVisibility}
                 >
-                  <i className="bi bi-plus-lg"></i> Adicionar
+                  <i className="bi bi-plus-lg"></i>
                 </button>
               </th>
             </tr>

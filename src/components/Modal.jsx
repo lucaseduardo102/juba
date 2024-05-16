@@ -36,7 +36,7 @@ export function Modal({
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="btn btn-outline-dark"
                   data-bs-dismiss="modal"
                   onClick={handleVisibility}
                   {...cancelButtonProps}
@@ -45,7 +45,7 @@ export function Modal({
                 </button>
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-outline-dark"
                   {...confirmButtonProps}
                 >
                   {confirmButtonProps?.title ?? "Salvar"}

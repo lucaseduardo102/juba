@@ -39,11 +39,11 @@ export function Routes() {
             <Route path="/lista-de-servicos" element={<CatalogList />} />
             <Route path="/profiles/:userId" element={<Profiles />} />
             <Route path="/payment" element={<Payment replace />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/users" element={<Users />} />
+            {/* <Route path="/services" element={<Services />} /> */}
+            <Route path="/usuarios" element={<Users />} />
             <Route path="/minha-conta" element={<MyAccount />} />
-            <Route path="/shopping-cart" element={<ShoppingCart />} />
-            <Route path="/about" element={<About />} />
+            {/* <Route path="/shopping-cart" element={<ShoppingCart />} /> */}
+            <Route path="/sobre" element={<About />} />
           </>
         )}
       </RoutesRRD>

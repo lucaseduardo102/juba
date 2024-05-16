@@ -58,7 +58,7 @@ function ModalFooter({ onClick, isPending }) {
     <div className="modal-footer">
       <button
         type="submit"
-        className="btn btn-primary"
+        className="btn btn-dark"
         onClick={onClick}
         disabled={isPending}
       >

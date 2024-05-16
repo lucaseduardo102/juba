@@ -27,7 +27,7 @@ export function NavigationItems({ location }) {
         <NavItem to="/lista-de-servicos" pathname={location.pathname}>
           Serviços
         </NavItem>
-        <NavItem to="/about" pathname={location.pathname}>
+        <NavItem to="/sobre" pathname={location.pathname}>
           Sobre
         </NavItem>
       </ul>

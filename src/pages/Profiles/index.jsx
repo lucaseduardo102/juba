@@ -44,10 +44,10 @@ export function Profiles() {
                 AddButton={
                   <button
                     type="button"
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm btn-outline-dark"
                     onClick={modalCreate.handleVisibility}
                   >
-                    <i className="bi bi-plus-lg"></i> Adicionar
+                    <i className="bi bi-plus-lg"></i>
                   </button>
                 }
               />
