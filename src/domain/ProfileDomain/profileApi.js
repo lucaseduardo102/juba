@@ -12,12 +12,13 @@ async function recoveryPassword(request) {
   return data;
 }
 
-async function update(request) {
-  return await api.patch(`${PATH}/${request.id}`, {
-    name: request.name,
-    cpf: request.cpf,
-    statusProfile: request.statusProfile,
+async function update({ id, name, cpf, statusProfile = true }) {
+  const { data } = await api.patch(PATH + "/" + id, {
+    name,
+    cpf,
+    statusProfile,
   });
+  return data;
 }
 
 async function remove(id) {

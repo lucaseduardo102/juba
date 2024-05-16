@@ -57,3 +57,7 @@ export const CreateProfileSchema = object().shape({
   name,
   cpf,
 });
+
+export const UpdateProfileByClientSchema = object().shape({
+  name,
+});
