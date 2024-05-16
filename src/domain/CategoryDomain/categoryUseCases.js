@@ -1,10 +1,15 @@
 import { categoryApi } from "./categoryApi";
-import { useFetch } from "../../hooks/useFetch";
 import { QueryKeys } from "../../services/queryClient/QueryKeys";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-function useCreate() {
-  return useFetch(categoryApi.create);
+export function useCategoryCreate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: categoryApi.create,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QueryKeys.CategoryGetAll] });
+    },
+  });
 }
 export function useCategoryGetAll({ withSpecialties = true } = {}) {
   return useQuery({
@@ -12,20 +17,13 @@ export function useCategoryGetAll({ withSpecialties = true } = {}) {
     queryFn: () => categoryApi.getAll(withSpecialties),
   });
 }
-function useGetCategoriesAndSpecialties() {
-  return useFetch(categoryApi.getCategoriesAndSpecialties);
-}
-function useRemove() {
-  return useFetch(categoryApi.remove);
-}
-function useUpdate() {
-  return useFetch(categoryApi.update);
-}
 
-// export const categoryUseCases = {
-//   create,
-//   getAll,
-//   getCategoriesAndSpecialties,
-//   update,
-//   remove,
-// };
+export function useCategoryUpdate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: categoryApi.update,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QueryKeys.CategoryGetAll] });
+    },
+  });
+}

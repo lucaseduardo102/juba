@@ -1,8 +1,7 @@
-import { Col, Form, Row, Spinner } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Load, Screen, ScreenTitle } from "../../components";
-import { useProfileUpdate, useUserGetById, useUserUpdate } from "../../domain";
-import { useAuthStore, useToastStore } from "../../services";
-import { useState } from "react";
+import { useUserGetById } from "../../domain";
+import { useAuthStore } from "../../services";
 import { FormUser } from "./components/FormUser";
 import { FormProfile } from "./components/FormProfile";
 import { ModalCreateProfile } from "./components/ModalCreateProfile";
@@ -25,8 +24,11 @@ export function MyAccount() {
       ) : (
         <>
           <ScreenTitle>Gerencie sua conta</ScreenTitle>
-          <Row className="justify-content-center mt-5 bg-body-tertiary  border b-1 shadow p-5 m-5 rounded">
-            <Col md={6}>
+          <Row xs={1} sm={1} md={1} className="justify-content-center p-5">
+            <Col
+              className="bg-body-tertiary border b-1 shadow p-5 rounded"
+              md={6}
+            >
               <FormUser user={user} />
               <div className="d-flex mb-3 justify-content-between align-items-center">
                 <h3 className="">Perfis</h3>

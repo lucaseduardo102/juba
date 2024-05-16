@@ -7,16 +7,14 @@ async function getAll(specialties) {
   return data;
 }
 
-async function getCategoriesAndSpecialties() {
-  return await api.get(PATH + "/specialties");
+async function create({ name }) {
+  const { data } = await api.post(PATH, { name });
+  return data;
 }
 
-async function create(name) {
-  return await api.post(PATH, { name });
-}
-
-async function update(request) {
-  return await api.put(PATH + "/" + request.id, { name: request.name });
+async function update({ id, name }) {
+  const { data } = await api.put(PATH + "/" + id, { name });
+  return data;
 }
 
 async function remove(categoryId) {
@@ -24,7 +22,6 @@ async function remove(categoryId) {
 }
 export const categoryApi = {
   getAll,
-  getCategoriesAndSpecialties,
   create,
   update,
   remove,

@@ -1,9 +1,10 @@
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { useFormik } from "formik";
-import { useSpecialtyUpdate } from "../../../domain/SpecialtyDomain/specialtyUseCases";
-import { useToastStore } from "../../../services";
+import { useSpecialtyUpdate } from "../../../domain/";
+import { useToastStore, ToastMessages } from "../../../services";
 import { FormSpecialty } from "./FormSpecialty";
+import { SpecialtySchema, mask } from "../../../utils";
 
 export function LineUpdate({ specialty: { id, name, price, timeDuration } }) {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -11,24 +12,32 @@ export function LineUpdate({ specialty: { id, name, price, timeDuration } }) {
   const { mutate } = useSpecialtyUpdate();
   const { showToast } = useToastStore();
 
+  const mutateOptions = {
+    onSuccess: () => {
+      setIsDisabled(true);
+      showToast({ message: ToastMessages.Catalog.UpdateSpecialty.success });
+    },
+    onError: () => {
+      showToast({ message: ToastMessages.Catalog.UpdateSpecialty.error });
+    },
+  };
+
   const formik = useFormik({
-    initialValues: { name, price, timeDuration },
-    onSubmit: (values) => {
+    validationSchema: SpecialtySchema,
+    initialValues: {
+      name,
+      price,
+      timeDuration,
+    },
+    onSubmit: ({ name, price, timeDuration }) => {
       mutate(
         {
-          id,
-          name: values.name,
-          price: values.price,
-          timeDuration: values.timeDuration,
+          specialtyId: id,
+          name,
+          price: mask.formatToFloat(mask.cleanCurrency(price)),
+          timeDuration,
         },
-        {
-          onSuccess: () => {
-            showToast({ message: "Especialidade alterada com sucesso" });
-          },
-          onError: () => {
-            showToast({ message: "Erro ao alterar especialidade" });
-          },
-        }
+        mutateOptions
       );
     },
   });

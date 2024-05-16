@@ -1,17 +1,10 @@
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Row,
-  Table,
-} from "react-bootstrap";
+import { Card, Col, Row, Table } from "react-bootstrap";
 import { Load, Screen, ScreenTitle } from "../../components";
 import { useCategoryGetAll } from "../../domain";
-import { useState } from "react";
 import { LineUpdate } from "./components/LineUpdate";
 import { LineCreate } from "./components/LineCreate";
+import { CardTitle } from "./components/CardTitle";
+import { CardCreateCategory } from "./components/CardCreateCategory";
 
 export function Catalog() {
   const { data: categories, isError, isLoading } = useCategoryGetAll();
@@ -28,16 +21,7 @@ export function Catalog() {
               <Col className="p5" key={id}>
                 <Card style={{ minWidth: 550 }}>
                   <Card.Body>
-                    <div className="d-flex justify-content-between ">
-                      <Card.Title>
-                        {name}
-                        {/* {true && <Form.Control value={name} />} */}
-                      </Card.Title>
-                      <i
-                        className="bi bi-pencil-square"
-                        style={{ fontSize: "1.2rem" }}
-                      ></i>
-                    </div>
+                    <CardTitle category={{ id, name }} />
                     <Table striped>
                       <TableHead />
                       <tbody>
@@ -47,13 +31,14 @@ export function Catalog() {
                             specialty={specialty}
                           />
                         ))}
-                        <LineCreate />
+                        <LineCreate categoryId={id} />
                       </tbody>
                     </Table>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
+            <CardCreateCategory />
           </Row>
         </>
       )}

@@ -1,4 +1,5 @@
 import { Form } from "react-bootstrap";
+import { mask } from "../../../utils";
 
 export function FormSpecialty({ formik, isDisabled = false }) {
   return (
@@ -16,7 +17,8 @@ export function FormSpecialty({ formik, isDisabled = false }) {
       <th>
         <Form.Control
           name="price"
-          value={formik.values.price?.toLocaleString("pt-BR")}
+          maxLength={7}
+          value={mask.currencyFormatBRL(formik.values.price)}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           isInvalid={formik.errors.price && formik.touched.price}
@@ -26,7 +28,8 @@ export function FormSpecialty({ formik, isDisabled = false }) {
       <th>
         <Form.Control
           name="timeDuration"
-          value={formik.values.timeDuration}
+          maxLength={5}
+          value={mask.fullTime(formik.values.timeDuration)}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           isInvalid={formik.errors.timeDuration && formik.touched.timeDuration}

@@ -113,6 +113,21 @@ const capitalizeFirstLetter = (status) => {
   return formattedStatus;
 };
 
+function currencyFormatBRL(value) {
+  value = String(value);
+  value = value.replace(/\D/g, "");
+  value = value.replace(/(\d{1,})(\d{2})$/, "$1,$2");
+  return value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+}
+
+function cleanCurrency(value) {
+  return value.replace(/[.,]/g, "");
+}
+
+function formatToFloat(value) {
+  return parseFloat((Number(value) / 100).toFixed(2));
+}
+
 export const mask = {
   cpf,
   date,
@@ -125,4 +140,7 @@ export const mask = {
   timestampToTimeFormat,
   parseDateToBrl,
   capitalizeFirstLetter,
+  currencyFormatBRL,
+  cleanCurrency,
+  formatToFloat,
 };

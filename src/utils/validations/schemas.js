@@ -61,3 +61,11 @@ export const CreateProfileSchema = object().shape({
 export const UpdateProfileByClientSchema = object().shape({
   name,
 });
+
+export const CategorySchema = object().shape({
+  name,
+});
+
+export const SpecialtySchema = object().shape({
+  name,
+})

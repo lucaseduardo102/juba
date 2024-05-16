@@ -1,5 +1,3 @@
-import { MyAccount } from "../../pages/MyAccount";
-
 export const ToastMessages = {
   SignUp: {
     success: "Cadastro realizado com sucesso.",
@@ -24,6 +22,24 @@ export const ToastMessages = {
     UpdateProfile: {
       success: "Usuário atualizado com sucesso",
       error: "Erro ao atualizar usuário",
+    },
+  },
+  Catalog: {
+    CreateCategory: {
+      success: "Categoria criada  com sucesso",
+      error: "Erro ao criar categoria",
+    },
+    UpdateCategory: {
+      success: "Categoria atualizada com sucesso",
+      error: "Error ao atualizar a categoria",
+    },
+    CreateSpecialty: {
+      success: "Especialidade criada com sucesso",
+      error: "Erro ao criar especialidade",
+    },
+    UpdateSpecialty: {
+      success: "Especialidade alterada com sucesso",
+      error: "Erro ao alterar especialidade",
     },
   },
 };
