@@ -7,14 +7,13 @@ export const Home = () => {
     <Screen>
       <Container>
         <ScreenTitle className="text-center">
-          {" "}
           Bem-vindo à Barbearia Jubas
         </ScreenTitle>
         <p className="text-center">
           Sua experiência de barbearia de primeira classe. Venha conhecer nossos
           serviços!
         </p>
-        <Row>
+        <Row className="justify-content-center">
           <Col xs={12} md={10}>
             <Row>
               <Col xs={12} md={4} className="mb-4">

@@ -42,4 +42,10 @@ export const ToastMessages = {
       error: "Erro ao alterar especialidade",
     },
   },
+  Users: {
+    UpdateUser: {
+      success: "Usuário atualizado com sucesso",
+      error: "Erro ao atualizar o usuário",
+    },
+  },
 };

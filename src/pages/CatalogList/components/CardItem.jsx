@@ -1,5 +1,6 @@
 import { Card, Col, Table } from "react-bootstrap";
 import { TableLine } from "./TableLine";
+import { mask } from "../../../utils";
 
 export function CardItem({ category: { name, specialties } }) {
   const hasSpecialties = specialties?.length !== 0;
@@ -19,7 +20,10 @@ export function CardItem({ category: { name, specialties } }) {
                   <TableLine
                     key={id}
                     first={name}
-                    second={price}
+                    second={price?.toLocaleString("pt-Br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
                     third={timeDuration}
                   />
                 ))}

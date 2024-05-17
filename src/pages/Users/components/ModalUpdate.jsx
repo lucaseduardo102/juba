@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { Modal } from "../../../components/Modal";
 import { UpdateUserSchema } from "../../../utils";
-import { UserForm } from "./UserForm";
+import { UserForm } from "./UserUpdateForm";
 import { useEffect, useState } from "react";
 import { AlertStatus } from "../../../components";
 import { useUserUpdate } from "../../../domain";

@@ -1,114 +1,52 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Screen, ScreenTitle } from "../../components/";
 import { useVisibility } from "../../hooks/useVisibility";
-import { ModalUpdate } from "./components/ModalUpdate";
-
-import { ModalCreate } from "./components/ModalCreate";
 import { useUserGetAll } from "../../domain";
+import { Button, Table } from "react-bootstrap";
+import { UserUpdateForm } from "./components/UserUpdateForm";
+import { ModalCreate } from "./components/ModalCreate";
 
 export const Users = () => {
   const { data } = useUserGetAll();
 
-  const modalUpdateUser = useModalFunctions();
-  const modalCreateUser = useVisibility();
-
-  const navigate = useNavigate();
-
-  const navigateToProfileScreen = (userId) => {
-    navigate("/profiles/" + userId);
-  };
+  const { isVisible, handleVisibility } = useVisibility();
 
   return (
     <Screen>
       <ScreenTitle>Lista de Usuários</ScreenTitle>
-      <div className="col-12">
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col" className="col-6">
-                E-mail
-              </th>
-              <th scope="col" className="col-4 text-center">
-                Permissão
-              </th>
-              <th scope="col" className="col-2 text-center">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-outline-dark"
-                  onClick={modalCreateUser.handleVisibility}
-                >
-                  <i className="bi bi-plus-lg"></i>
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((user) => (
-              <tr key={user.id}>
-                <td>{user.email}</td>
-                <td className="col-2 text-center">{user.permission}</td>
+      <Table striped>
+        <thead>
+          <tr>
+            <th className="col-4">E-mail</th>
+            <th className="col-3 text-center">Senha</th>
+            <th className="col-3 text-center">Permissão</th>
+            <th className="col-2 text-center ">
+              <Button
+                variant="outline-dark"
+                size="sm"
+                onClick={handleVisibility}
+              >
+                <i className="bi bi-person-plus-fill"></i>
+              </Button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((user) => (
+            <UserUpdateForm key={user.id} user={user} />
+          ))}
+        </tbody>
+      </Table>
 
-                <td className="col-3 text-center">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-dark m-1"
-                    onClick={() => modalUpdateUser.openModal(user)}
-                  >
-                    <i className="bi bi-pencil-square"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-dark m-1"
-                    onClick={() => navigateToProfileScreen(user?.id)}
-                  >
-                    <i className="bi bi-info-square"></i>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {modalUpdateUser.isVisible && modalUpdateUser.selectedData && (
+      {/* {modalUpdateUser.isVisible && modalUpdateUser.selectedData && (
         <ModalUpdate
           closeModal={modalUpdateUser.closeModal}
           user={modalUpdateUser.selectedData}
         />
-      )}
-      {modalCreateUser.isVisible && (
+      )} */}
+      {/* {modalCreateUser.isVisible && (
         <ModalCreate closeModal={modalCreateUser.handleVisibility} />
-      )}
+      )} */}
+      {isVisible && <ModalCreate handleVisibility={handleVisibility} />}
     </Screen>
   );
-};
-
-/**
- * Hook responsável por manter o estado do modal
- * @returns
- */
-const useModalFunctions = () => {
-  const { isVisible, handleVisibility } = useVisibility();
-
-  const [selectedData, setSelectedData] = useState();
-
-  const openModal = (data) => {
-    setSelectedData(data);
-    handleVisibility();
-  };
-
-  const closeModal = () => {
-    setSelectedData();
-    handleVisibility();
-  };
-
-  return {
-    isVisible,
-    handleVisibility,
-    selectedData,
-    openModal,
-    closeModal,
-  };
 };
