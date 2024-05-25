@@ -2,7 +2,7 @@ export * from "./AppointmentDomain/appointmentUseCases";
 
 export * from "./CategoryDomain/categoryUseCases";
 
-export * from "./Employee/employeeUseCases";
+export * from "./EmployeeDomain/employeeUseCases";
 
 export * from "./PermissionDomain/permissionUseCases";
 
@@ -15,3 +15,5 @@ export * from "./SpecialtyDomain/specialtyUseCases";
 export * from "./UserDomain/userUseCases";
 
 export * from "./FeedbackDomain/feedbackUseCases";
+
+export * from "./WorkingHourDomain/workingHourUseCases";

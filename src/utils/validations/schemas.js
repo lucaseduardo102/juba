@@ -53,7 +53,7 @@ export const UpdateUserSchema = object().shape({
   password: optionalPassword,
 });
 
-export const CreateProfileSchema = object().shape({
+export const ProfileSchema = object().shape({
   name,
   cpf,
 });

@@ -43,9 +43,31 @@ export const ToastMessages = {
     },
   },
   Users: {
+    CreateUser: {
+      success: "Usuário criado com sucesso",
+      error: "Erro ao criar usuário",
+    },
     UpdateUser: {
       success: "Usuário atualizado com sucesso",
       error: "Erro ao atualizar o usuário",
+    },
+    ProfileUpdate: {
+      success: "Perfil atualizado com sucesso",
+      error: "Erro ao atualizar perfil",
+    },
+    ProfileCreate: {
+      success: "Perfil criado com sucesso",
+      error: "Erro ao criar perfil",
+    },
+    ProfileRemove: {
+      success: "Perfil removido com sucesso",
+      error: "Erro ao remover o perfil",
+    },
+  },
+  Employees: {
+    Update: {
+      success: "Dados do funcionário atualizados com sucesso",
+      error: "Erro ao atualizar dados do funcionário",
     },
   },
 };

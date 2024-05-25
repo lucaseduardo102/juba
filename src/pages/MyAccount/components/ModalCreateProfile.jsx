@@ -1,11 +1,7 @@
 import { useFormik } from "formik";
 import { ToastMessages, useToastStore } from "../../../services";
 import { useProfileCreate, useProfileUpdate } from "../../../domain";
-import {
-  CreateProfileSchema,
-  UpdateProfileByClientSchema,
-  mask,
-} from "../../../utils";
+import { ProfileSchema, mask } from "../../../utils";
 import { Button, Form, Modal, Spinner } from "react-bootstrap";
 
 export function ModalCreateProfile({ userId, handleVisibility }) {
@@ -85,7 +81,7 @@ const useCreateProfileService = (userId, handleVisibility) => {
   };
   const formik = useFormik({
     initialValues: { name: "", cpf: "" },
-    validationSchema: CreateProfileSchema,
+    validationSchema: ProfileSchema,
     onSubmit: ({ name, cpf }) =>
       mutate(
         { name, cpf: mask.removeCpf(cpf), statusProfile: true, userId },

@@ -2,8 +2,8 @@ import { Screen, ScreenTitle } from "../../components/";
 import { useVisibility } from "../../hooks/useVisibility";
 import { useUserGetAll } from "../../domain";
 import { Button, Table } from "react-bootstrap";
-import { UserUpdateForm } from "./components/UserUpdateForm";
-import { ModalCreate } from "./components/ModalCreate";
+import { UserUpdate } from "./components/UserUpdate";
+import { UserCreate } from "./components/UserCreate";
 
 export const Users = () => {
   const { data } = useUserGetAll();
@@ -32,21 +32,12 @@ export const Users = () => {
         </thead>
         <tbody>
           {data?.map((user) => (
-            <UserUpdateForm key={user.id} user={user} />
+            <UserUpdate key={user.id} user={user} />
           ))}
         </tbody>
       </Table>
 
-      {/* {modalUpdateUser.isVisible && modalUpdateUser.selectedData && (
-        <ModalUpdate
-          closeModal={modalUpdateUser.closeModal}
-          user={modalUpdateUser.selectedData}
-        />
-      )} */}
-      {/* {modalCreateUser.isVisible && (
-        <ModalCreate closeModal={modalCreateUser.handleVisibility} />
-      )} */}
-      {isVisible && <ModalCreate handleVisibility={handleVisibility} />}
+      {isVisible && <UserCreate handleVisibility={handleVisibility} />}
     </Screen>
   );
 };

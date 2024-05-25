@@ -11,25 +11,33 @@ export function NavigationItems({ location }) {
           Inicio
         </NavItem>
 
-        {authCredentials && (
+        {authCredentials?.user?.permission === "ADMIN" && (
+          <>
+            <NavItem to="/agenda" pathname={location.pathname}>
+              Agenda
+            </NavItem>
+            <NavItem to="/usuarios" pathname={location.pathname}>
+              Usuários
+            </NavItem>
+            <NavItem to="/avaliacoes" pathname={location.pathname}>
+              Avaliações
+            </NavItem>
+          </>
+        )}
+
+        {authCredentials?.user?.permission === "CLIENTE" && (
           <>
             <NavItem to="/agendamento" pathname={location.pathname}>
               Agenda
             </NavItem>
-            <NavItem to="/meus-agendamentos" pathname={location.pathname}>
-              Meus Agendamentos
+            <NavItem to="/lista-de-servicos" pathname={location.pathname}>
+              Serviços
             </NavItem>
-            <NavItem to="/minha-conta" pathname={location.pathname}>
-              Minha conta
+            <NavItem to="/sobre" pathname={location.pathname}>
+              Sobre
             </NavItem>
           </>
         )}
-        <NavItem to="/lista-de-servicos" pathname={location.pathname}>
-          Serviços
-        </NavItem>
-        <NavItem to="/sobre" pathname={location.pathname}>
-          Sobre
-        </NavItem>
       </ul>
       {authCredentials && <ButtonLogout />}
     </div>
@@ -64,7 +72,7 @@ function ButtonLogout() {
           }}
           onClick={removeCredentials}
         >
-          Sair
+          <i className="bi bi-box-arrow-in-right fs-4"></i>
         </button>
       </li>
     </ul>

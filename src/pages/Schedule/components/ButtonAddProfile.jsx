@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useVisibility } from "../../../hooks/useVisibility";
 import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
-import { CreateProfileSchema, mask } from "../../../utils";
+import { ProfileSchema, mask } from "../../../utils";
 import { useProfileCreate } from "../../../domain";
 import { useAuthStore } from "../../../services/store/useAuthStore";
 import { useToastStore } from "../../../services";
@@ -51,7 +51,7 @@ function ModalCreate({ handleVisibility }) {
   };
 
   const formik = useFormik({
-    validationSchema: CreateProfileSchema,
+    validationSchema: ProfileSchema,
     initialValues: {
       name: "",
       cpf: "",

@@ -12,17 +12,18 @@ async function recoveryPassword(request) {
   return data;
 }
 
-async function update({ id, name, cpf, statusProfile = true }) {
+async function update({ id, name, cpf, statusProfile = true, userId }) {
   const { data } = await api.patch(PATH + "/" + id, {
     name,
     cpf,
     statusProfile,
+    userId,
   });
   return data;
 }
 
-async function remove(id) {
-  return await api.delete(`${PATH}/${id}`);
+async function remove({ id }) {
+  return await api.delete(PATH + "/" + id);
 }
 
 export const profileApi = {
