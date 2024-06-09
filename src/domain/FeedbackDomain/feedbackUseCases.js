@@ -1,9 +1,21 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { feedbackApi } from "./feedbackApi";
+import { QueryKeys } from "../../services";
 
 export function useFeedbackCreate() {
-  return useMutation({ mutationFn: feedbackApi.create });
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: feedbackApi.create,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.AppointmentGetByUserId],
+      });
+    },
+  });
 }
-
-// Alterar o feedback
-// invalidar as Queries
+export function useFeedbackGetById(appointmentId) {
+  return useQuery({
+    queryKey: [QueryKeys.FeedbackGetById],
+    queryFn: () => feedbackApi.getById(appointmentId),
+  });
+}

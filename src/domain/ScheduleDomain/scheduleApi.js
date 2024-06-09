@@ -12,4 +12,15 @@ async function getDaysOfAttendance() {
   return data;
 }
 
-export const scheduleApi = { getSchedule, getDaysOfAttendance };
+async function getScheduleByDate({ date }) {
+  const { data } = await api.get(PATH + "/by-date", {
+    params: { date },
+  });
+  return data;
+}
+
+export const scheduleApi = {
+  getSchedule,
+  getDaysOfAttendance,
+  getScheduleByDate,
+};

@@ -18,7 +18,7 @@ export function BusinessManagement() {
             <Card.Body>
               <Card.Title>Atendimentos</Card.Title>
               <Card.Text>Gerencie os atendimentos</Card.Text>
-              <Button variant="dark" as={Link} to="/catalogo">
+              <Button variant="dark" as={Link} to="/atendimentos">
                 Atendimentos
               </Button>
             </Card.Body>
@@ -50,12 +50,12 @@ export function BusinessManagement() {
         </Col>
         <Col className="mb-4">
           <Card className="text-center shadow">
-            <i className="bi bi-cart-check fs-3 mt-3"></i>
+            <i className="bi bi-star fs-3 mt-3"></i>
             <Card.Body>
-              <Card.Title>Pagamentos</Card.Title>
-              <Card.Text>Gerencie todos os perfis de usuários</Card.Text>
-              <Button variant="dark" as={Link} to="/usuarios">
-                Usuários
+              <Card.Title>Avaliações</Card.Title>
+              <Card.Text>Gerencie todas as avaliações</Card.Text>
+              <Button variant="dark" as={Link} to="/avaliacoes">
+                Avaliações
               </Button>
             </Card.Body>
           </Card>

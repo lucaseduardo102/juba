@@ -6,11 +6,12 @@ export * from "./Home";
 export * from "./RecoveryPassword/RecoveryPassword";
 export * from "./About";
 export * from "./Users";
-export * from "./MyAppointments"
+export * from "./MyAppointments";
 export * from "./Services";
 export * from "./ShoppingCart";
 export * from "./Payment";
 export * from "./MyAppointments/";
 export * from "./MyAccount";
 export * from "./BusinessManagement";
+export * from "./Attendances";
 export * from "./Employees";

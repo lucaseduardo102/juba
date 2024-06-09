@@ -3,10 +3,10 @@ import { create } from "zustand";
 const initialValues = {
   category: null,
   specialty: null,
+  client: null,
+  employee: null,
   date: null,
   time: null,
-  employee: null,
-  client: null,
 };
 
 const scheduleStore = create((set) => ({

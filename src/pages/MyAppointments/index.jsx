@@ -1,17 +1,10 @@
 import { Load, Screen, ScreenTitle } from "../../components";
-import { ModalAssessment } from "./components/ModalAssessment";
 import { CardContent } from "./components/CardContent";
 import { useMyAppointmentsService } from "./service/useMyAppointmentsService";
+import { ActionButtons } from "./components/ActionButtons";
 
 export function MyAppointments() {
-  const {
-    appointments,
-    isLoading,
-    isError,
-    selectedAppointmentId,
-    modalFeedback,
-    openModalFeedback,
-  } = useMyAppointmentsService();
+  const { appointments, isLoading, isError } = useMyAppointmentsService();
 
   return (
     <Screen fluid="sm">
@@ -23,19 +16,11 @@ export function MyAppointments() {
             <ScreenTitle>Nenhum atendimento marcado</ScreenTitle>
           )}
           {appointments?.map((appointment) => (
-            <CardContent
-              key={appointment.id}
-              appointment={appointment}
-              openModalFeedback={openModalFeedback}
-            />
+            <CardContent key={appointment.id} appointment={appointment}>
+              <ActionButtons appointment={appointment} />
+            </CardContent>
           ))}
         </>
-      )}
-      {modalFeedback.isVisible && (
-        <ModalAssessment
-          appointmentId={selectedAppointmentId}
-          handleVisibility={modalFeedback.handleVisibility}
-        />
       )}
     </Screen>
   );

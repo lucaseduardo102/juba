@@ -17,6 +17,7 @@ import {
   Payment,
   MyAccount,
   BusinessManagement,
+  Attendances,
 } from "../pages";
 import { useAuthStore } from "../services";
 
@@ -38,6 +39,7 @@ export function Routes() {
             <Route path="/usuarios" element={<Users />} />
             <Route path="/avaliacoes" element={<Users />} />
             <Route path="/pagamentos" element={<Users />} />
+            <Route path="/atendimentos" element={<Attendances />} />
           </>
         )}
 

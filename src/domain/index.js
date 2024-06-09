@@ -4,6 +4,8 @@ export * from "./CategoryDomain/categoryUseCases";
 
 export * from "./EmployeeDomain/employeeUseCases";
 
+export * from "./PaymentDomain/paymentUseCases";
+
 export * from "./PermissionDomain/permissionUseCases";
 
 export * from "./ProfileDomain/profileUseCases";

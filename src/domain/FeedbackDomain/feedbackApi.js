@@ -7,4 +7,9 @@ async function create(request) {
   return data;
 }
 
-export const feedbackApi = { create };
+async function getById(appointmentId) {
+  const { data } = await api.get(PATH + "/" + appointmentId);
+  return data;
+}
+
+export const feedbackApi = { create, getById };

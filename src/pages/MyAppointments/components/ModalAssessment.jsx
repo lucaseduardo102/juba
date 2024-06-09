@@ -10,7 +10,7 @@ export function ModalAssessment({ handleVisibility, appointmentId }) {
     handleComment,
     handleEmotion,
     sendData,
-  } = useModalAssessmentService(appointmentId);
+  } = useModalAssessmentService({ appointmentId, handleVisibility });
 
   return (
     <Modal show onHide={handleVisibility}>

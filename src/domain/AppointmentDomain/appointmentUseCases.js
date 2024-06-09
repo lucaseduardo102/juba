@@ -23,3 +23,25 @@ export function useAppointmentsGetByUserId({ userId }) {
     queryFn: () => appointmentApi.getByUserId(userId),
   });
 }
+
+export function useAppointmentGetById(appointmentId) {
+  return useQuery({
+    queryKey: [QueryKeys.AppointmentGetById],
+    queryFn: () => appointmentApi.getById(appointmentId),
+  });
+}
+
+export function useAppointmentUpdate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: appointmentApi.update,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.AppointmentGetById],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.AppointmentGetAll],
+      });
+    },
+  });
+}

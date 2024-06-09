@@ -128,6 +128,59 @@ function formatToFloat(value) {
   return parseFloat((Number(value) / 100).toFixed(2));
 }
 
+function formatCardNumber(cardNumber) {
+  const cleaned = cardNumber.replace(/\D/g, "");
+  return cleaned.replace(/(\d{4})(?=\d)/g, "$1 ");
+}
+
+function formatNumber(number) {
+  return number.replace(/\D/g, "");
+}
+
+function formatName(name) {
+  return name.replace(/[^a-zA-Z\s]/g, "");
+}
+
+function formatExpirationDate(date) {
+  const cleaned = date.replace(/\D/g, "");
+  return cleaned.replace(/(\d{2})(\d{2})/, "$1/$2");
+}
+
+function removeSpaces(cardNumber) {
+  return cardNumber.replace(/\s/g, "");
+}
+
+function formatCNPJ(cnpj) {
+  cnpj = cnpj.replace(/[^\d]/g, "");
+  cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+  cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+  cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+  return cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+}
+
+function removeMaskOfCpfOrCnpj(document) {
+  return document.replace(/[^\d]/g, "");
+}
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function formatStatus(status) {
+  return capitalizeFirstLetter(status).split("_").join(" ");
+}
+
+function dateBRL(date) {
+  date = new date(date);
+  let formattedDate = date.toLocaleDateString("pt-BR", {
+    weekday: "long",
+  });
+  return formattedDate.charAt(0).toUpperCase() + formattedDate.substring(1);
+}
+
 export const mask = {
   cpf,
   date,
@@ -143,4 +196,14 @@ export const mask = {
   currencyFormatBRL,
   cleanCurrency,
   formatToFloat,
+  formatCardNumber,
+  formatNumber,
+  formatName,
+  formatExpirationDate,
+  removeSpaces,
+  formatCNPJ,
+  removeMaskOfCpfOrCnpj,
+  formatDate,
+  formatStatus,
+  dateBRL,
 };

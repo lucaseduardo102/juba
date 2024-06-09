@@ -1,20 +1,14 @@
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useUserGetById } from "../../../domain";
 import { Load } from "../../../components";
 import { ButtonAddProfile } from "./ButtonAddProfile";
 import { useAuthStore } from "../../../services/store/useAuthStore";
-import { useNavigate } from "react-router-dom";
 import { useScheduleStore } from "../../../services";
+import { ButtonConfirm } from "./ButtonConfirm";
 
 export function ClientSelector() {
-  const {
-    isLoading,
-    isError,
-    handleProfile,
-    user,
-    selectedClientId,
-    navigateToPaymentScreen,
-  } = useClientService();
+  const { isLoading, isError, handleProfile, user, selectedClientId } =
+    useClientService();
 
   if (isLoading || isError) {
     return <Load />;
@@ -39,15 +33,7 @@ export function ClientSelector() {
         <ButtonAddProfile />
       </div>
       <div className="d-flex justify-content-center">
-        {selectedClientId && (
-          <Button
-            style={{ marginTop: 50 }}
-            variant="outline-dark"
-            onClick={navigateToPaymentScreen}
-          >
-            Ir para pagamento
-          </Button>
-        )}
+        {selectedClientId && <ButtonConfirm />}
       </div>
     </>
   );
@@ -74,18 +60,11 @@ const useClientService = () => {
     handleChangeValue("client", getClient(event.target.value));
   };
 
-  const navigate = useNavigate();
-
-  const navigateToPaymentScreen = () => {
-    navigate("/payment");
-  };
-
   return {
     isLoading,
     isError,
     handleProfile,
     user,
     selectedClientId: selectedClient?.id,
-    navigateToPaymentScreen,
   };
 };

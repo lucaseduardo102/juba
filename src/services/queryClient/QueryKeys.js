@@ -7,5 +7,9 @@ export const QueryKeys = {
   DaysOfAttendance: "DaysOfAttendance",
   ScheduleGetSchedule: "ScheduleGetSchedule",
   AppointmentGetByUserId: "AppointmentGetByUserId",
+  AppointmentGetById: "AppointmentGetById",
   WorkingHourGetAll: "WorkingHourGetAll",
+  PaymentGetMethods: "PaymentGetMethods",
+  AppointmentGetAll: "AppointmentGetAll",
+  FeedbackGetById: "FeedbackGetById",
 };

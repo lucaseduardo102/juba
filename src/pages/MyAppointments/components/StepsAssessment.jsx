@@ -6,6 +6,12 @@ import {
 } from "react-icons/bs";
 
 export function StepsAssessment({ currentEmotion, handleEmotion }) {
+  const rating = {
+    INSATISFEITO: "INSATISFEITO",
+    SATISFEITO: "SATISFEITO",
+    MUITO_SATISFEITO: "MUITO_SATISFEITO",
+  };
+
   return (
     <>
       <Form.Label className="mt-2">
@@ -14,42 +20,67 @@ export function StepsAssessment({ currentEmotion, handleEmotion }) {
       <div className="form-control">
         <Row>
           <Col className="text-center">
-            <button style={style.button} onClick={() => handleEmotion(0)}>
+            <button
+              style={style.button}
+              onClick={() => handleEmotion(rating.INSATISFEITO)}
+            >
               <BsFillEmojiFrownFill
                 style={style.icon}
-                className={currentEmotion === 0 ? "text-danger" : ""}
+                className={
+                  currentEmotion === rating.INSATISFEITO ? "text-danger" : ""
+                }
               />
               <p
                 style={style.textIcon}
-                className={currentEmotion === 0 ? "text-danger" : ""}
+                className={
+                  currentEmotion === rating.INSATISFEITO ? "text-danger" : ""
+                }
               >
                 Insatisfeito
               </p>
             </button>
           </Col>
           <Col className="text-center">
-            <button style={style.button} onClick={() => handleEmotion(1)}>
+            <button
+              style={style.button}
+              onClick={() => handleEmotion(rating.SATISFEITO)}
+            >
               <BsFillEmojiSmileFill
                 style={style.icon}
-                className={currentEmotion === 1 ? "text-secondary" : ""}
+                className={
+                  currentEmotion === rating.SATISFEITO ? "text-secondary" : ""
+                }
               />
               <p
                 style={style.textIcon}
-                className={currentEmotion === 1 ? "text-secondary" : ""}
+                className={
+                  currentEmotion === rating.SATISFEITO ? "text-secondary" : ""
+                }
               >
                 Satisfeito
               </p>
             </button>
           </Col>
           <Col className="text-center">
-            <button style={style.button} onClick={() => handleEmotion(2)}>
+            <button
+              style={style.button}
+              onClick={() => handleEmotion(rating.MUITO_SATISFEITO)}
+            >
               <BsFillEmojiHeartEyesFill
                 style={style.icon}
-                className={currentEmotion === 2 ? "text-success" : ""}
+                className={
+                  currentEmotion === rating.MUITO_SATISFEITO
+                    ? "text-success"
+                    : ""
+                }
               />
               <p
                 style={style.textIcon}
-                className={currentEmotion === 2 ? "text-success" : ""}
+                className={
+                  currentEmotion === rating.MUITO_SATISFEITO
+                    ? "text-success"
+                    : ""
+                }
               >
                 Muito Satisfeito
               </p>

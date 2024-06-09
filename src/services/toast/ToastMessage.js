@@ -70,4 +70,26 @@ export const ToastMessages = {
       error: "Erro ao atualizar dados do funcionário",
     },
   },
+  Schedule: {
+    AppointmentCreate: {
+      success: "Agendamento realizado com sucesso",
+      error: "Erro ao agendar o atendimento",
+    },
+  },
+  MyAppointments: {
+    Payment: {
+      success: "Pagamento realizado com sucesso",
+      error: "Erro ao realizar pagamento",
+    },
+    Feedback: {
+      success: "Atendimento avaliado com sucesso",
+      error: "Erro ao avaliar o atendimento",
+    },
+  },
+  Attendances: {
+    UpdateAppointment: {
+      success: "Atendimento atualizado com sucesso",
+      error: "Erro ao atualizar o atendimento",
+    },
+  },
 };

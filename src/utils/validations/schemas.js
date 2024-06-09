@@ -25,6 +25,23 @@ const name = string()
   .max(50, "*Nome muito longo")
   .required("*Campo obrigatório");
 
+const cardNumber = string()
+  .length(19, "O número do cartão deve ter exatamente 12 caracteres")
+  .required("*Campo obrigatório");
+
+const holderName = string()
+  .min(3, "O nome deve ter no mínimo 3 caracteres")
+  .max(20, "O nome deve ter no máximo 20 caracteres")
+  .required("*Campo obrigatório");
+
+const expirationDate = string()
+  .min(4, "A data de expiração deve ter exatamente 5 caracteres (MM/AA)")
+  .required("*Campo obrigatório");
+
+const securityCode = string()
+  .length(3, "O código de segurança deve ter exatamente 3 caracteres")
+  .required("*Campo obrigatório");
+
 export const LoginSchema = object().shape({
   email,
   password,
@@ -68,4 +85,11 @@ export const CategorySchema = object().shape({
 
 export const SpecialtySchema = object().shape({
   name,
-})
+});
+
+export const PaymentMethodSchema = object().shape({
+  cardNumber,
+  holderName,
+  expirationDate,
+  securityCode,
+});
