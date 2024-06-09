@@ -30,7 +30,7 @@ export function Employees() {
 
             <tbody>
               {employees?.map((employee) => (
-                <TableLine key={employees.id} employee={employee} />
+                <TableLine key={employee.id} employee={employee} />
               ))}
             </tbody>
           </Table>

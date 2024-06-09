@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { WorkingHourLine } from "./WorkingHourLine";
 import { Button, Form, Spinner } from "react-bootstrap";
-import { SpecialtyList } from "./SpecialtyList";
+import { ModalSpecialty } from "./ModalSpecialty";
 import { ToastMessages, useToastStore } from "../../../services";
 import { useEmployeeUpdate } from "../../../domain";
 
@@ -52,7 +52,10 @@ export function TableLine({
         onChangeSelectedWorkingHour={handleSelectedWorkingHour}
         isDisabled={isDisabled}
       />
-      <SpecialtyList currentSpecialties={specialties} />
+      <ModalSpecialty
+        currentSpecialties={specialties}
+        employeeId={id}
+      />
 
       <th className="text-center">
         {isPending ? (

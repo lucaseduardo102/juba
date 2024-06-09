@@ -11,10 +11,12 @@ async function getAll(available) {
   return data;
 }
 
-async function update({ employeeId, workingHourId }) {
-  return await api.patch(PATH + "/" + employeeId, {
+async function update({ employeeId, workingHourId, specialties }) {
+  const { data } = await api.patch(PATH + "/" + employeeId, {
     workingHourId,
+    specialties,
   });
+  return data;
 }
 
 async function getAvailableSpecialties(employeeId, date, time) {
