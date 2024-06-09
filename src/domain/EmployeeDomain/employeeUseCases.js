@@ -12,3 +12,14 @@ export function useEmployeeGetAll({ available = true } = {}) {
 export function useEmployeeUpdate() {
   return useMutation({ mutationFn: employeeApi.update });
 }
+
+export function useEmployeeGetAvailableSpecialties({
+  employeeId,
+  date,
+  time,
+}) {
+  return useQuery({
+    queryKey: [QueryKeys.EmployeeGetAvailableSpecialties],
+    queryFn: () => employeeApi.getAvailableSpecialties(employeeId, date, time),
+  });
+}

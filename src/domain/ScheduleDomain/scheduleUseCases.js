@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { QueryKeys, invalidateQueries } from "../../services";
+import { QueryKeys } from "../../services";
 import { scheduleApi } from "./scheduleApi";
 import { mask } from "../../utils";
 

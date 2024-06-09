@@ -1,9 +1,9 @@
-export function Description({ title, children }) {
+export function Description({ title, children, hasLine = true }) {
   return (
     <div className="mb-3">
       <h5 className="fs-5">{title}</h5>
       {children}
-      <hr />
+      {hasLine && <hr />}
     </div>
   );
 }

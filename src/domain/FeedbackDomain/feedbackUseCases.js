@@ -19,3 +19,10 @@ export function useFeedbackGetById(appointmentId) {
     queryFn: () => feedbackApi.getById(appointmentId),
   });
 }
+
+export function useFeedbackGetAll() {
+  return useQuery({
+    queryKey: [QueryKeys.FeedbackGetAll],
+    queryFn: () => feedbackApi.getAll(),
+  });
+}

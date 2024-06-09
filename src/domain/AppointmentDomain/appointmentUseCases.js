@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryKeys } from "../../services";
 import { appointmentApi } from "./appointmentApi";
 
-export function useAppointmentCreate({ specialtyId }) {
+export function useAppointmentCreate({ specialtyId, date = undefined }) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: appointmentApi.create,
@@ -12,6 +12,9 @@ export function useAppointmentCreate({ specialtyId }) {
       });
       queryClient.invalidateQueries({
         queryKey: [QueryKeys.AppointmentGetByUserId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.AppointmentGetAll, date],
       });
     },
   });

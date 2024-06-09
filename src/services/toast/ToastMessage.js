@@ -91,5 +91,9 @@ export const ToastMessages = {
       success: "Atendimento atualizado com sucesso",
       error: "Erro ao atualizar o atendimento",
     },
+    CreateAppointment: {
+      success: "Agendamento realizado com sucesso",
+      error: "Erro ao agendar o atendimento",
+    },
   },
 };

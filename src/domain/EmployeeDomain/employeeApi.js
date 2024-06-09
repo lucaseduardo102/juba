@@ -16,8 +16,21 @@ async function update({ employeeId, workingHourId }) {
     workingHourId,
   });
 }
+
+async function getAvailableSpecialties(employeeId, date, time) {
+  const { data } = await api.get(
+    PATH + "/" + employeeId + "/available-specialties",
+    {
+      params: { dateTime: date + "T" + time },
+    }
+  );
+
+  return data;
+}
+
 export const employeeApi = {
   create,
   getAll,
   update,
+  getAvailableSpecialties,
 };

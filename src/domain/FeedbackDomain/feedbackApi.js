@@ -12,4 +12,8 @@ async function getById(appointmentId) {
   return data;
 }
 
-export const feedbackApi = { create, getById };
+async function getAll() {
+  const { data } = await api.get(PATH);
+  return data;
+}
+export const feedbackApi = { create, getById, getAll };

@@ -12,4 +12,6 @@ export const QueryKeys = {
   PaymentGetMethods: "PaymentGetMethods",
   AppointmentGetAll: "AppointmentGetAll",
   FeedbackGetById: "FeedbackGetById",
+  FeedbackGetAll: "FeedbackGetAll",
+  EmployeeGetAvailableSpecialties: "EmployeeGetAvailableSpecialties",
 };
