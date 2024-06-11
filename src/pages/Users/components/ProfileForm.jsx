@@ -34,8 +34,8 @@ export function ProfileForm({ formik, isDisabled = false }) {
           onChange={formik.handleChange}
           disabled={isDisabled}
         >
-          <option>Ativo</option>
-          <option>Inativo</option>
+          <option value={true}>Ativo</option>
+          <option value={false}>Inativo</option>
         </select>
       </th>
     </>

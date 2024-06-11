@@ -37,7 +37,10 @@ export function TableLine({
 
   const sendData = () => {
     mutate(
-      { employeeId: id, workingHourId: selectedWorkingHour },
+      {
+        employeeId: id,
+        workingHourId: selectedWorkingHour,
+      },
       mutateOptions
     );
   };
@@ -52,10 +55,7 @@ export function TableLine({
         onChangeSelectedWorkingHour={handleSelectedWorkingHour}
         isDisabled={isDisabled}
       />
-      <ModalSpecialty
-        currentSpecialties={specialties}
-        employeeId={id}
-      />
+      <ModalSpecialty currentSpecialties={specialties} employeeId={id} />
 
       <th className="text-center">
         {isPending ? (

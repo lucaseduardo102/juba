@@ -80,11 +80,11 @@ const useCreateProfileService = (userId, handleVisibility) => {
     },
   };
   const formik = useFormik({
-    initialValues: { name: "", cpf: "" },
+    initialValues: { name: "", cpf: "", statusProfile: true },
     validationSchema: ProfileSchema,
-    onSubmit: ({ name, cpf }) =>
+    onSubmit: ({ name, cpf, statusProfile }) =>
       mutate(
-        { name, cpf: mask.removeCpf(cpf), statusProfile: true, userId },
+        { name, cpf: mask.removeCpf(cpf), statusProfile, userId },
         mutateOptions
       ),
   });
